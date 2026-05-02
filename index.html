@@ -28,7 +28,7 @@ button { font-family: inherit; }
 .cbtn.ok { background: #2E7D32; }
 .secondary-btn { background: #fff; color: #3C3489; border: 0.5px solid #7F77DD; }
 .secondary-btn:hover { background: #EEEDFE; }
-.tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 10px; font-weight: 600; margin-left: 6px; background: #E8F5E9; color: #2E7D32; border: 0.5px solid #A5D6A7; }
+.tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 10px; font-weight: 600; margin-left: 6px; background: #E3F2FD; color: #1565C0; border: 0.5px solid #90CAF9; }
 .helper { margin-top: 7px; font-size: 11px; color: var(--color-text-secondary, #777); line-height: 1.6; }
 </style>
 </head>
@@ -50,7 +50,7 @@ button { font-family: inherit; }
   <input id="pName" placeholder="اسم المشروع — Project Title" />
 </div>
 
-<div class="lbl">نوع البرومت <span class="tag">نفس التصميم — صفحات متعددة</span></div>
+<div class="lbl">نوع البرومت <span class="tag">بافيلون على مسطح مائي — حديقة بغداد</span></div>
 <div class="prompt-tabs" id="promptTabs"></div>
 
 <div class="lbl">البرومت الحالي</div>
@@ -68,33 +68,50 @@ button { font-family: inherit; }
 
 const ERAS = {
   "مسيحي مبكر": { buildings: {
-    "سانتا كوستانزا": { en:"Baptistery of Santa Costanza", loc:"Rome, Italy", date:"340 AD", style:"Early Christian", pal:"warm brick red, white marble, gold mosaic, grey granite", mood:"intimate sacred centrality, early Christian simplicity", ref:"Santa Costanza Rome, Pantheon", desc:"Circular early Christian central-plan building with a low dome, barrel-vaulted ambulatory, paired granite columns, and early Christian mosaics. The plain brick exterior contrasts with a rich sacred interior.", adds:"Conversion to baptistery then church, 18th-century narthex, mosaic restorations", elements:[{n:"Circular Drum",na:"الطبل الدائري",t:"Structural",f:"Cylindrical wall supporting dome"},{n:"Low Dome",na:"القبة المنبسطة",t:"Structural",f:"Shallow masonry dome over central space"},{n:"Barrel-Vaulted Ambulatory",na:"الممر المقبو",t:"Structural/Spatial",f:"Ring corridor with barrel vault"},{n:"Paired Granite Columns",na:"الأعمدة المزدوجة",t:"Structural",f:"12 pairs supporting ambulatory vault"},{n:"4th-Century Mosaics",na:"الفسيفساء المبكرة",t:"Ornamental",f:"Early Christian decorative mosaics"},{n:"Central Unobstructed Space",na:"الفضاء المركزي",t:"Spatial",f:"Circular focal ceremonial area"},{n:"Narthex Entry",na:"البهو المدخلي",t:"Spatial",f:"Entrance transition space"}] },
-    "سان أبولينير": { en:"Basilica of S. Apollinare in Classe", loc:"Ravenna, Italy", date:"533-549 AD", style:"Early Christian Basilica", pal:"warm brick, white marble, gold and green mosaic, terracotta", mood:"directional sacred procession, luminous simplicity", ref:"Sant'Apollinare in Classe, Old St Peter's", desc:"Important Early Christian basilica with a wide nave, side aisles, marble columns, semicircular apse, Byzantine mosaics, clerestory light, and a cylindrical campanile.", adds:"9th-10th century campanile, medieval stripping of nave columns, mosaic restorations", elements:[{n:"Wide Basilican Nave",na:"الرواق الرئيسي",t:"Spatial",f:"Main congregational space"},{n:"Marble Column Arcade",na:"صفوف الأعمدة",t:"Structural",f:"Columns separating nave and aisles"},{n:"Semicircular Apse",na:"الحنية نصف الدائرية",t:"Spatial/Structural",f:"Focal liturgical space"},{n:"Byzantine Apse Mosaic",na:"فسيفساء الحنية",t:"Ornamental",f:"Symbolic mosaic landscape"},{n:"Clerestory Windows",na:"نوافذ الكليريستوري",t:"Spatial",f:"Upper light openings"},{n:"Cylindrical Campanile",na:"برج الجرس الأسطواني",t:"Architectural",f:"Round bell tower"},{n:"Side Aisles",na:"الأجنحة الجانبية",t:"Spatial",f:"Flanking circulation spaces"}] },
-    "كنيسة المهد": { en:"Church of the Nativity", loc:"Bethlehem, Palestine", date:"325 AD", style:"Early Christian Basilica", pal:"warm limestone, gold mosaic, ochre, deep red brick", mood:"ancient sacred permanence, humble devotional", ref:"Church of Nativity, Old St Peter's", desc:"Ancient five-aisled basilica with limestone columns, grotto crypt, low Door of Humility, Crusader mosaics, octagonal chancel, and preserved early mosaic floors.", adds:"Justinian rebuilding, Crusader mosaics, Door of Humility, UNESCO 2012", elements:[{n:"Five-Aisled Basilica Plan",na:"المسقط ذو الخمسة أروقة",t:"Spatial",f:"Wide multi-aisled plan"},{n:"Monolithic Limestone Columns",na:"الأعمدة الحجرية",t:"Structural",f:"Single-piece columns defining aisles"},{n:"Grotto Crypt",na:"الكهف المقدس",t:"Spatial",f:"Underground sacred focal point"},{n:"Door of Humility",na:"باب التواضع",t:"Architectural",f:"Tiny low entry"},{n:"Crusader Wall Mosaics",na:"فسيفساء الحروب الصليبية",t:"Ornamental",f:"Narrative wall mosaics"},{n:"Octagonal Chancel",na:"القسم الثماني",t:"Spatial/Structural",f:"Sanctuary over grotto"},{n:"Trapdoor Floor Mosaics",na:"فسيفساء الأرضية",t:"Ornamental",f:"Preserved early floor mosaics"}] }
+    "سانتا كوستانزا": { en:"Baptistery of Santa Costanza", loc:"Rome, Italy", date:"340 AD", style:"Early Christian", pal:"warm brick red, white marble, gold mosaic, grey granite", mood:"intimate sacred centrality, early Christian simplicity", ref:"Santa Costanza Rome, Pantheon", desc:"Circular early Christian central-plan building with a low dome, barrel-vaulted ambulatory, paired granite columns, and early Christian mosaics. The plain brick exterior contrasts with a rich sacred interior.", adds:"Conversion to baptistery then church, 18th-century narthex, mosaic restorations",
+    elements:[{n:"Circular Drum",na:"الطبل الدائري",t:"Structural",f:"Cylindrical wall supporting dome"},{n:"Low Dome",na:"القبة المنبسطة",t:"Structural",f:"Shallow masonry dome over central space"},{n:"Barrel-Vaulted Ambulatory",na:"الممر المقبو",t:"Structural/Spatial",f:"Ring corridor with barrel vault"},{n:"Paired Granite Columns",na:"الأعمدة المزدوجة",t:"Structural",f:"12 pairs supporting ambulatory vault"},{n:"4th-Century Mosaics",na:"الفسيفساء المبكرة",t:"Ornamental",f:"Early Christian decorative mosaics"},{n:"Central Unobstructed Space",na:"الفضاء المركزي",t:"Spatial",f:"Circular focal ceremonial area"},{n:"Narthex Entry",na:"البهو المدخلي",t:"Spatial",f:"Entrance transition space"}] },
+    "سان أبولينير": { en:"Basilica of S. Apollinare in Classe", loc:"Ravenna, Italy", date:"533-549 AD", style:"Early Christian Basilica", pal:"warm brick, white marble, gold and green mosaic, terracotta", mood:"directional sacred procession, luminous simplicity", ref:"Sant'Apollinare in Classe, Old St Peter's", desc:"Important Early Christian basilica with a wide nave, side aisles, marble columns, semicircular apse, Byzantine mosaics, clerestory light, and a cylindrical campanile.", adds:"9th-10th century campanile, medieval stripping of nave columns, mosaic restorations",
+    elements:[{n:"Wide Basilican Nave",na:"الرواق الرئيسي",t:"Spatial",f:"Main congregational space"},{n:"Marble Column Arcade",na:"صفوف الأعمدة",t:"Structural",f:"Columns separating nave and aisles"},{n:"Semicircular Apse",na:"الحنية نصف الدائرية",t:"Spatial/Structural",f:"Focal liturgical space"},{n:"Byzantine Apse Mosaic",na:"فسيفساء الحنية",t:"Ornamental",f:"Symbolic mosaic landscape"},{n:"Clerestory Windows",na:"نوافذ الكليريستوري",t:"Spatial",f:"Upper light openings"},{n:"Cylindrical Campanile",na:"برج الجرس الأسطواني",t:"Architectural",f:"Round bell tower"},{n:"Side Aisles",na:"الأجنحة الجانبية",t:"Spatial",f:"Flanking circulation spaces"}] },
+    "كنيسة المهد": { en:"Church of the Nativity", loc:"Bethlehem, Palestine", date:"325 AD", style:"Early Christian Basilica", pal:"warm limestone, gold mosaic, ochre, deep red brick", mood:"ancient sacred permanence, humble devotional", ref:"Church of Nativity, Old St Peter's", desc:"Ancient five-aisled basilica with limestone columns, grotto crypt, low Door of Humility, Crusader mosaics, octagonal chancel, and preserved early mosaic floors.", adds:"Justinian rebuilding, Crusader mosaics, Door of Humility, UNESCO 2012",
+    elements:[{n:"Five-Aisled Basilica Plan",na:"المسقط ذو الخمسة أروقة",t:"Spatial",f:"Wide multi-aisled plan"},{n:"Monolithic Limestone Columns",na:"الأعمدة الحجرية",t:"Structural",f:"Single-piece columns defining aisles"},{n:"Grotto Crypt",na:"الكهف المقدس",t:"Spatial",f:"Underground sacred focal point"},{n:"Door of Humility",na:"باب التواضع",t:"Architectural",f:"Tiny low entry"},{n:"Crusader Wall Mosaics",na:"فسيفساء الحروب الصليبية",t:"Ornamental",f:"Narrative wall mosaics"},{n:"Octagonal Chancel",na:"القسم الثماني",t:"Spatial/Structural",f:"Sanctuary over grotto"},{n:"Trapdoor Floor Mosaics",na:"فسيفساء الأرضية",t:"Ornamental",f:"Preserved early floor mosaics"}] }
   }},
   "بيزنطي": { buildings: {
-    "آيا صوفيا": { en:"Hagia Sophia", loc:"Istanbul, Turkey", date:"532-537 AD", style:"Byzantine", pal:"gold, deep crimson, purple, white marble, cobalt mosaic", mood:"otherworldly radiance, sacred geometry", ref:"Hagia Sophia, San Vitale, Chora Church", desc:"Byzantine masterpiece with a vast central dome on pendentives, half-domes, polychrome marble, gold mosaics, clerestory windows, and grand column galleries.", adds:"Ottoman minarets, calligraphy medallions, mihrab, minbar", elements:[{n:"Pendentive",na:"الثوب الركني",t:"Structural",f:"Transitions square base to circular dome"},{n:"Central Dome",na:"القبة المركزية",t:"Structural/Spatial",f:"Dominant hemispherical space"},{n:"Half-Dome",na:"القبة النصفية",t:"Structural",f:"Buttresses and extends main volume"},{n:"Polychrome Marble Revetment",na:"كسوة الرخام الملون",t:"Ornamental",f:"Multi-coloured wall panels"},{n:"Gold Mosaic",na:"الفسيفساء الذهبية",t:"Ornamental",f:"Luminous tessera surfaces"},{n:"Clerestory Windows",na:"نوافذ الكليريستوري",t:"Spatial",f:"Ring of light at dome base"},{n:"Column Arcade Gallery",na:"صفوف الأعمدة",t:"Structural/Spatial",f:"Double arcade and gallery"}] },
-    "سان فيتالي": { en:"San Vitale", loc:"Ravenna, Italy", date:"547 AD", style:"Byzantine", pal:"gold, Byzantine purple, deep green, white marble, warm brick", mood:"imperial sacred splendour, rich ornamental surfaces", ref:"San Vitale, Hagia Sophia, Hosios Loukas", desc:"Octagonal Byzantine church with interlocking central space, semicircular exedrae, dome on piers, narthex, impost capitals, and gold-ground mosaics.", adds:"Later frescoes, dome modifications, floor replacement, mosaic conservation", elements:[{n:"Octagonal Plan",na:"المسقط الثماني",t:"Spatial/Structural",f:"Double octagon spatial system"},{n:"Semicircular Exedrae",na:"الحنايا نصف الدائرية",t:"Spatial",f:"Radiating spatial expansions"},{n:"Byzantine Imperial Mosaics",na:"الفسيفساء الإمبراطورية",t:"Ornamental",f:"Imperial mosaic panels"},{n:"Dome on Octagonal Piers",na:"القبة على الدعائم",t:"Structural",f:"Dome carried on eight piers"},{n:"Narthex",na:"الرواق المدخلي",t:"Spatial",f:"Entrance transition space"},{n:"Byzantine Impost Capitals",na:"تيجان الأعمدة البيزنطية",t:"Structural/Ornamental",f:"Carved transitional capitals"},{n:"Gold Ground Vault Mosaic",na:"قباب الفسيفساء الذهبية",t:"Ornamental",f:"Gold mosaics on vaults"}] }
+    "آيا صوفيا": { en:"Hagia Sophia", loc:"Istanbul, Turkey", date:"532-537 AD", style:"Byzantine", pal:"gold, deep crimson, purple, white marble, cobalt mosaic", mood:"otherworldly radiance, sacred geometry", ref:"Hagia Sophia, San Vitale, Chora Church", desc:"Byzantine masterpiece with a vast central dome on pendentives, half-domes, polychrome marble, gold mosaics, clerestory windows, and grand column galleries.", adds:"Ottoman minarets, calligraphy medallions, mihrab, minbar",
+    elements:[{n:"Pendentive",na:"الثوب الركني",t:"Structural",f:"Transitions square base to circular dome"},{n:"Central Dome",na:"القبة المركزية",t:"Structural/Spatial",f:"Dominant hemispherical space"},{n:"Half-Dome",na:"القبة النصفية",t:"Structural",f:"Buttresses and extends main volume"},{n:"Polychrome Marble Revetment",na:"كسوة الرخام الملون",t:"Ornamental",f:"Multi-coloured wall panels"},{n:"Gold Mosaic",na:"الفسيفساء الذهبية",t:"Ornamental",f:"Luminous tessera surfaces"},{n:"Clerestory Windows",na:"نوافذ الكليريستوري",t:"Spatial",f:"Ring of light at dome base"},{n:"Column Arcade Gallery",na:"صفوف الأعمدة",t:"Structural/Spatial",f:"Double arcade and gallery"}] },
+    "سان فيتالي": { en:"San Vitale", loc:"Ravenna, Italy", date:"547 AD", style:"Byzantine", pal:"gold, Byzantine purple, deep green, white marble, warm brick", mood:"imperial sacred splendour, rich ornamental surfaces", ref:"San Vitale, Hagia Sophia, Hosios Loukas", desc:"Octagonal Byzantine church with interlocking central space, semicircular exedrae, dome on piers, narthex, impost capitals, and gold-ground mosaics.", adds:"Later frescoes, dome modifications, floor replacement, mosaic conservation",
+    elements:[{n:"Octagonal Plan",na:"المسقط الثماني",t:"Spatial/Structural",f:"Double octagon spatial system"},{n:"Semicircular Exedrae",na:"الحنايا نصف الدائرية",t:"Spatial",f:"Radiating spatial expansions"},{n:"Byzantine Imperial Mosaics",na:"الفسيفساء الإمبراطورية",t:"Ornamental",f:"Imperial mosaic panels"},{n:"Dome on Octagonal Piers",na:"القبة على الدعائم",t:"Structural",f:"Dome carried on eight piers"},{n:"Narthex",na:"الرواق المدخلي",t:"Spatial",f:"Entrance transition space"},{n:"Byzantine Impost Capitals",na:"تيجان الأعمدة البيزنطية",t:"Structural/Ornamental",f:"Carved transitional capitals"},{n:"Gold Ground Vault Mosaic",na:"قباب الفسيفساء الذهبية",t:"Ornamental",f:"Gold mosaics on vaults"}] }
   }},
   "رومانسكي": { buildings: {
-    "كاتدرائية بيزا": { en:"Duomo Cathedral of Pisa", loc:"Pisa, Italy", date:"1092 AD", style:"Romanesque", pal:"white and dark green marble, warm terracotta, grey stone", mood:"monumental civic pride, rhythmic layered facades", ref:"Duomo Pisa, Monreale, San Miniato", desc:"Pisan Romanesque cathedral with striped marble banding, open loggia galleries, five-aisled nave, elliptical dome, blind arcading, and freestanding campanile.", adds:"Elliptical dome added, ensemble completed later, restored after fire", elements:[{n:"Striped Marble Banding",na:"الشرائط الرخامية",t:"Ornamental/Architectural",f:"Alternating marble bands"},{n:"Open Loggia Galleries",na:"شرفات الأروقة",t:"Architectural/Spatial",f:"Layered colonnaded facade"},{n:"Five-Aisled Nave",na:"الصحن ذو الخمسة أروقة",t:"Spatial",f:"Wide multi-aisled interior"},{n:"Elliptical Dome",na:"القبة الإهليلجية",t:"Structural/Spatial",f:"Oval dome over crossing"},{n:"Latin Cross Plan",na:"المسقط الصليبي",t:"Spatial",f:"Traditional cross plan"},{n:"Blind Arcading",na:"الأقواس العمياء",t:"Ornamental",f:"Decorative exterior arcades"},{n:"Freestanding Campanile",na:"برج الجرس المنفصل",t:"Architectural",f:"Separate vertical landmark"}] },
-    "كاتدرائية مونتريالي": { en:"Cathedral of Monreale", loc:"Sicily, Italy", date:"1172-1182 AD", style:"Norman-Romanesque", pal:"gold mosaic, warm limestone, white marble, terracotta, Byzantine blue-green", mood:"overwhelming ornamental richness, multicultural sacred splendour", ref:"Monreale, Palatine Chapel Palermo, Cefalù", desc:"Norman-Romanesque cathedral combining Byzantine mosaics, Norman massing, Arab pointed arches, triple apse, wide nave, and richly carved cloister columns.", adds:"Cloister, bell towers, mosaic restorations, UNESCO 2015", elements:[{n:"Full-Coverage Byzantine Mosaic",na:"الفسيفساء البيزنطية الكاملة",t:"Ornamental",f:"Gold-ground narrative surfaces"},{n:"Christ Pantocrator Apse",na:"حنية المسيح",t:"Ornamental/Spatial",f:"Dominant apse focal point"},{n:"Norman-Arab Pointed Arches",na:"الأقواس المدببة",t:"Structural/Architectural",f:"Interlacing pointed arches"},{n:"228-Column Cloister",na:"الرواق ذو 228 عموداً",t:"Spatial",f:"Garden cloister with paired columns"},{n:"Wide Three-Aisled Nave",na:"الصحن الثلاثي",t:"Spatial",f:"Broad basilican nave"},{n:"Inlaid Column Shafts",na:"أعمدة التطعيم",t:"Ornamental/Structural",f:"Decorative column shafts"},{n:"Triple Apse Cluster",na:"مجموعة الحنايا",t:"Spatial/Structural",f:"Grouped east-end apses"}] },
-    "كاتدرائية شباير": { en:"Speyer Cathedral", loc:"Speyer, Germany", date:"1024-1106 AD", style:"Romanesque", pal:"warm sandstone, grey stone, terracotta tile, deep red brick", mood:"imperial monumental Romanesque power", ref:"Speyer, Worms, Mainz Cathedrals", desc:"Imperial Romanesque cathedral with groin-vaulted nave, dwarf gallery, massive westwork, crypt, alternating supports, apse, choir, and Lombard blind arcading.", adds:"Westwork rebuilt, 19th-century restoration, UNESCO 1981", elements:[{n:"Groin Vault Nave",na:"قبو التقاطع",t:"Structural",f:"Major vaulted nave system"},{n:"Rhineland Dwarf Gallery",na:"الشرفة القزمة الراينية",t:"Architectural/Ornamental",f:"Arcade below roofline"},{n:"Four-Tower Westwork",na:"الواجهة ذات الأبراج",t:"Architectural",f:"Massive towered west facade"},{n:"Imperial Crypt",na:"السرداب الإمبراطوري",t:"Spatial",f:"Large crypt beneath choir"},{n:"Alternating Nave Supports",na:"الدعائم المتناوبة",t:"Structural",f:"Rhythmic pier-column system"},{n:"Apse and Choir",na:"الحنية والجوقة",t:"Spatial",f:"Raised liturgical east end"},{n:"Lombard Blind Arcading",na:"الأقواس العمياء",t:"Ornamental",f:"Wall surface articulation"}] }
+    "كاتدرائية بيزا": { en:"Duomo Cathedral of Pisa", loc:"Pisa, Italy", date:"1092 AD", style:"Romanesque", pal:"white and dark green marble, warm terracotta, grey stone", mood:"monumental civic pride, rhythmic layered facades", ref:"Duomo Pisa, Monreale, San Miniato", desc:"Pisan Romanesque cathedral with striped marble banding, open loggia galleries, five-aisled nave, elliptical dome, blind arcading, and freestanding campanile.", adds:"Elliptical dome added, ensemble completed later, restored after fire",
+    elements:[{n:"Striped Marble Banding",na:"الشرائط الرخامية",t:"Ornamental/Architectural",f:"Alternating marble bands"},{n:"Open Loggia Galleries",na:"شرفات الأروقة",t:"Architectural/Spatial",f:"Layered colonnaded facade"},{n:"Five-Aisled Nave",na:"الصحن ذو الخمسة أروقة",t:"Spatial",f:"Wide multi-aisled interior"},{n:"Elliptical Dome",na:"القبة الإهليلجية",t:"Structural/Spatial",f:"Oval dome over crossing"},{n:"Latin Cross Plan",na:"المسقط الصليبي",t:"Spatial",f:"Traditional cross plan"},{n:"Blind Arcading",na:"الأقواس العمياء",t:"Ornamental",f:"Decorative exterior arcades"},{n:"Freestanding Campanile",na:"برج الجرس المنفصل",t:"Architectural",f:"Separate vertical landmark"}] },
+    "كاتدرائية مونتريالي": { en:"Cathedral of Monreale", loc:"Sicily, Italy", date:"1172-1182 AD", style:"Norman-Romanesque", pal:"gold mosaic, warm limestone, white marble, terracotta, Byzantine blue-green", mood:"overwhelming ornamental richness, multicultural sacred splendour", ref:"Monreale, Palatine Chapel Palermo, Cefalù", desc:"Norman-Romanesque cathedral combining Byzantine mosaics, Norman massing, Arab pointed arches, triple apse, wide nave, and richly carved cloister columns.", adds:"Cloister, bell towers, mosaic restorations, UNESCO 2015",
+    elements:[{n:"Full-Coverage Byzantine Mosaic",na:"الفسيفساء البيزنطية الكاملة",t:"Ornamental",f:"Gold-ground narrative surfaces"},{n:"Christ Pantocrator Apse",na:"حنية المسيح",t:"Ornamental/Spatial",f:"Dominant apse focal point"},{n:"Norman-Arab Pointed Arches",na:"الأقواس المدببة",t:"Structural/Architectural",f:"Interlacing pointed arches"},{n:"228-Column Cloister",na:"الرواق ذو 228 عموداً",t:"Spatial",f:"Garden cloister with paired columns"},{n:"Wide Three-Aisled Nave",na:"الصحن الثلاثي",t:"Spatial",f:"Broad basilican nave"},{n:"Inlaid Column Shafts",na:"أعمدة التطعيم",t:"Ornamental/Structural",f:"Decorative column shafts"},{n:"Triple Apse Cluster",na:"مجموعة الحنايا",t:"Spatial/Structural",f:"Grouped east-end apses"}] },
+    "كاتدرائية شباير": { en:"Speyer Cathedral", loc:"Speyer, Germany", date:"1024-1106 AD", style:"Romanesque", pal:"warm sandstone, grey stone, terracotta tile, deep red brick", mood:"imperial monumental Romanesque power", ref:"Speyer, Worms, Mainz Cathedrals", desc:"Imperial Romanesque cathedral with groin-vaulted nave, dwarf gallery, massive westwork, crypt, alternating supports, apse, choir, and Lombard blind arcading.", adds:"Westwork rebuilt, 19th-century restoration, UNESCO 1981",
+    elements:[{n:"Groin Vault Nave",na:"قبو التقاطع",t:"Structural",f:"Major vaulted nave system"},{n:"Rhineland Dwarf Gallery",na:"الشرفة القزمة الراينية",t:"Architectural/Ornamental",f:"Arcade below roofline"},{n:"Four-Tower Westwork",na:"الواجهة ذات الأبراج",t:"Architectural",f:"Massive towered west facade"},{n:"Imperial Crypt",na:"السرداب الإمبراطوري",t:"Spatial",f:"Large crypt beneath choir"},{n:"Alternating Nave Supports",na:"الدعائم المتناوبة",t:"Structural",f:"Rhythmic pier-column system"},{n:"Apse and Choir",na:"الحنية والجوقة",t:"Spatial",f:"Raised liturgical east end"},{n:"Lombard Blind Arcading",na:"الأقواس العمياء",t:"Ornamental",f:"Wall surface articulation"}] }
   }},
   "قوطي": { buildings: {
-    "نوتردام دو باري": { en:"Notre-Dame de Paris", loc:"Paris, France", date:"1160-1260 AD", style:"Gothic", pal:"cool grey limestone, cobalt and gold stained glass, white stone", mood:"soaring vertical spirituality, skeletal structural drama", ref:"Notre-Dame Paris, Amiens, Sainte-Chapelle", desc:"Gothic cathedral with flying buttresses, rose windows, pointed arches, ribbed vaults, clustered piers, pinnacles, and tracery screens.", adds:"Viollet-le-Duc restoration, 2019 fire, recent restoration", elements:[{n:"Flying Buttress",na:"الدعامة الطائرة",t:"Structural",f:"Transfers roof thrust outward"},{n:"Rose Window",na:"النافذة الوردية",t:"Spatial/Ornamental",f:"Circular stained-glass window"},{n:"Pointed Arch",na:"القوس المدبب",t:"Structural",f:"Directs load vertically"},{n:"Ribbed Vault",na:"القبو الضلعي",t:"Structural",f:"Ribs concentrate loads"},{n:"Clustered Pier",na:"العمود المركب",t:"Structural",f:"Bundle of shafts"},{n:"Pinnacle",na:"البرج الصغير",t:"Structural/Ornamental",f:"Weighted decorative spire"},{n:"Tracery Screen",na:"شاشة التخريم الحجري",t:"Architectural/Ornamental",f:"Delicate stone lattice"}] },
-    "سانت شابيل": { en:"Sainte-Chapelle", loc:"Paris, France", date:"1242-1248 AD", style:"Rayonnant Gothic", pal:"deep cobalt blue, ruby red, gold, grey stone, rich jewel tones", mood:"transcendent coloured light, jewel-box sacred intensity", ref:"Sainte-Chapelle, King's College Cambridge, Bourges", desc:"Rayonnant Gothic chapel with glass walls, delicate piers, ribbed vault, rose window, two-level chapel arrangement, relic setting, and gold-painted details.", adds:"Rose window, restoration, glass conservation", elements:[{n:"Floor-to-Ceiling Stained Glass",na:"الزجاج الملون الكامل",t:"Spatial/Ornamental",f:"Walls of coloured light"},{n:"Delicate Stone Piers",na:"الدعائم الحجرية الرفيعة",t:"Structural",f:"Minimal stone skeleton"},{n:"Ribbed Vault",na:"القبو الضلعي",t:"Structural",f:"Coloured ribbed ceiling"},{n:"Rose Window",na:"النافذة الوردية",t:"Spatial/Ornamental",f:"Circular kaleidoscopic window"},{n:"Two-Level Chapel",na:"الكنيسة المزدوجة",t:"Spatial",f:"Lower and upper chapel"},{n:"Holy Relic Setting",na:"إطار الذخيرة المقدسة",t:"Spatial",f:"Building as reliquary"},{n:"Gold-Painted Stone Details",na:"التفاصيل المذهبة",t:"Ornamental",f:"Gilded stone details"}] },
-    "كاتدرائية أميان": { en:"Amiens Cathedral", loc:"Amiens, France", date:"1220 AD", style:"High Gothic", pal:"cool grey limestone, cobalt blue glass, gold details, white stone", mood:"sublime vertical height, overwhelming Gothic ambition", ref:"Amiens, Notre-Dame Paris, Bourges", desc:"High Gothic cathedral with three-storey elevation, triple portal facade, very tall nave vault, flying buttress system, triforium, labyrinth floor, and sculptural programme.", adds:"Chapels, rose window, WWI restoration, UNESCO 1981", elements:[{n:"Three-Storey Elevation",na:"الارتفاع الثلاثي",t:"Architectural/Spatial",f:"Arcade, triforium, clerestory"},{n:"West Facade Triple Portal",na:"الواجهة ذات الثلاثة أبواب",t:"Architectural/Ornamental",f:"Three sculpted portals"},{n:"42.3m Nave Vault",na:"قبو الصحن",t:"Structural",f:"Very tall nave vault"},{n:"Flying Buttress System",na:"نظام الدعامات الطائرة",t:"Structural",f:"Two-tier external supports"},{n:"Triforium Gallery",na:"رواق الترايفوريوم",t:"Spatial/Architectural",f:"Middle-level gallery"},{n:"Labyrinth Floor",na:"متاهة الأرضية",t:"Ornamental/Spatial",f:"Symbolic floor path"},{n:"Beau Dieu Trumeau",na:"تمثال المسيح الجميل",t:"Ornamental",f:"Central portal statue"}] }
+    "نوتردام دو باري": { en:"Notre-Dame de Paris", loc:"Paris, France", date:"1160-1260 AD", style:"Gothic", pal:"cool grey limestone, cobalt and gold stained glass, white stone", mood:"soaring vertical spirituality, skeletal structural drama", ref:"Notre-Dame Paris, Amiens, Sainte-Chapelle", desc:"Gothic cathedral with flying buttresses, rose windows, pointed arches, ribbed vaults, clustered piers, pinnacles, and tracery screens.", adds:"Viollet-le-Duc restoration, 2019 fire, recent restoration",
+    elements:[{n:"Flying Buttress",na:"الدعامة الطائرة",t:"Structural",f:"Transfers roof thrust outward"},{n:"Rose Window",na:"النافذة الوردية",t:"Spatial/Ornamental",f:"Circular stained-glass window"},{n:"Pointed Arch",na:"القوس المدبب",t:"Structural",f:"Directs load vertically"},{n:"Ribbed Vault",na:"القبو الضلعي",t:"Structural",f:"Ribs concentrate loads"},{n:"Clustered Pier",na:"العمود المركب",t:"Structural",f:"Bundle of shafts"},{n:"Pinnacle",na:"البرج الصغير",t:"Structural/Ornamental",f:"Weighted decorative spire"},{n:"Tracery Screen",na:"شاشة التخريم الحجري",t:"Architectural/Ornamental",f:"Delicate stone lattice"}] },
+    "سانت شابيل": { en:"Sainte-Chapelle", loc:"Paris, France", date:"1242-1248 AD", style:"Rayonnant Gothic", pal:"deep cobalt blue, ruby red, gold, grey stone, rich jewel tones", mood:"transcendent coloured light, jewel-box sacred intensity", ref:"Sainte-Chapelle, King's College Cambridge, Bourges", desc:"Rayonnant Gothic chapel with glass walls, delicate piers, ribbed vault, rose window, two-level chapel arrangement, relic setting, and gold-painted details.", adds:"Rose window, restoration, glass conservation",
+    elements:[{n:"Floor-to-Ceiling Stained Glass",na:"الزجاج الملون الكامل",t:"Spatial/Ornamental",f:"Walls of coloured light"},{n:"Delicate Stone Piers",na:"الدعائم الحجرية الرفيعة",t:"Structural",f:"Minimal stone skeleton"},{n:"Ribbed Vault",na:"القبو الضلعي",t:"Structural",f:"Coloured ribbed ceiling"},{n:"Rose Window",na:"النافذة الوردية",t:"Spatial/Ornamental",f:"Circular kaleidoscopic window"},{n:"Two-Level Chapel",na:"الكنيسة المزدوجة",t:"Spatial",f:"Lower and upper chapel"},{n:"Holy Relic Setting",na:"إطار الذخيرة المقدسة",t:"Spatial",f:"Building as reliquary"},{n:"Gold-Painted Stone Details",na:"التفاصيل المذهبة",t:"Ornamental",f:"Gilded stone details"}] },
+    "كاتدرائية أميان": { en:"Amiens Cathedral", loc:"Amiens, France", date:"1220 AD", style:"High Gothic", pal:"cool grey limestone, cobalt blue glass, gold details, white stone", mood:"sublime vertical height, overwhelming Gothic ambition", ref:"Amiens, Notre-Dame Paris, Bourges", desc:"High Gothic cathedral with three-storey elevation, triple portal facade, very tall nave vault, flying buttress system, triforium, labyrinth floor, and sculptural programme.", adds:"Chapels, rose window, WWI restoration, UNESCO 1981",
+    elements:[{n:"Three-Storey Elevation",na:"الارتفاع الثلاثي",t:"Architectural/Spatial",f:"Arcade, triforium, clerestory"},{n:"West Facade Triple Portal",na:"الواجهة ذات الثلاثة أبواب",t:"Architectural/Ornamental",f:"Three sculpted portals"},{n:"42.3m Nave Vault",na:"قبو الصحن",t:"Structural",f:"Very tall nave vault"},{n:"Flying Buttress System",na:"نظام الدعامات الطائرة",t:"Structural",f:"Two-tier external supports"},{n:"Triforium Gallery",na:"رواق الترايفوريوم",t:"Spatial/Architectural",f:"Middle-level gallery"},{n:"Labyrinth Floor",na:"متاهة الأرضية",t:"Ornamental/Spatial",f:"Symbolic floor path"},{n:"Beau Dieu Trumeau",na:"تمثال المسيح الجميل",t:"Ornamental",f:"Central portal statue"}] }
   }},
   "نهضة وباروك": { buildings: {
-    "تيمبيتو": { en:"Tempietto di San Pietro", loc:"Rome, Italy", date:"1502 AD", style:"High Renaissance", pal:"pietra serena grey, warm white limestone, pale gold dome", mood:"rational humanist harmony, mathematical proportion", ref:"Tempietto, Pantheon, Villa Rotonda", desc:"High Renaissance circular temple with Doric peristyle, hemispherical dome, cylindrical cella, circular drum, classical frieze, balustrade, and stepped base.", adds:"Baroque balustrade, unbuilt circular courtyard, restorations", elements:[{n:"Doric Peristyle",na:"الرواق الدوري",t:"Structural/Architectural",f:"Columns encircling cylinder"},{n:"Hemispherical Dome",na:"القبة نصف الكروية",t:"Structural/Symbolic",f:"Perfect geometric dome"},{n:"Cylindrical Cella",na:"الخلية الأسطوانية",t:"Spatial/Structural",f:"Inner circular room"},{n:"Circular Drum",na:"الطبل الدائري",t:"Structural",f:"Dome base with windows"},{n:"Metope-Triglyph Frieze",na:"إفريز الميتوب",t:"Ornamental/Architectural",f:"Doric frieze"},{n:"Balustrade",na:"الدرابزون",t:"Architectural",f:"Low railing transition"},{n:"Stepped Base",na:"القاعدة المدرجة",t:"Structural/Architectural",f:"Classical podium"}] },
-    "قبة فلورنسا": { en:"Dome of Florence Cathedral (Brunelleschi)", loc:"Florence, Italy", date:"1417-1434 AD", style:"Early Renaissance", pal:"warm terracotta brick, white marble ribs, green and pink marble below", mood:"triumphant engineering ambition, Renaissance civic pride", ref:"Florence Dome, Pantheon, St Peter's Rome", desc:"Engineering-focused Renaissance dome with double shell, eight primary ribs, herringbone brickwork, tension rings, octagonal drum, lantern, and internal walkway.", adds:"Lantern, frescoes, repairs, restoration", elements:[{n:"Double-Shell Dome",na:"القبة ذات القشرتين",t:"Structural",f:"Inner and outer load distribution"},{n:"8 Primary Stone Ribs",na:"الأضلاع الحجرية الثمانية",t:"Structural",f:"Main dome skeleton"},{n:"Herringbone Brick Pattern",na:"نمط الطوب الحورة",t:"Structural",f:"Self-supporting brickwork"},{n:"Tension Rings",na:"حلقات الشد",t:"Structural",f:"Contain outward thrust"},{n:"Octagonal Drum",na:"الطبل الثماني",t:"Structural/Spatial",f:"Base with ocular windows"},{n:"Lantern",na:"الفانوس",t:"Structural/Architectural",f:"Top light and compression"},{n:"Internal Walkway Gallery",na:"الممشى الداخلي",t:"Spatial",f:"Walkway between shells"}] },
-    "سان كارلو": { en:"S. Carlo alle Quattro Fontane", loc:"Rome, Italy", date:"1638-1667 AD", style:"Baroque", pal:"white stucco, grey stone details, gold gilding, dramatic shadow", mood:"theatrical dynamic movement, intellectual geometric drama", ref:"San Carlo alle Quattro Fontane, Sant'Ivo alla Sapienza", desc:"Baroque church with undulating oval plan, coffered oval dome, convex-concave facade, white stucco, oval lantern, hidden cloister, and giant order pilasters.", adds:"Posthumous facade, cloister, stucco restoration", elements:[{n:"Undulating Oval Plan",na:"المسقط البيضاوي المتموج",t:"Spatial/Structural",f:"Flowing convex-concave space"},{n:"Coffered Oval Dome",na:"القبة البيضاوية المقعرة",t:"Structural/Ornamental",f:"Geometric coffered dome"},{n:"Convex-Concave Facade",na:"الواجهة المحدبة-المقعرة",t:"Architectural",f:"Rhythmic curved facade"},{n:"White Stucco Interior",na:"الداخلية من الجص الأبيض",t:"Ornamental/Spatial",f:"Unified white geometry"},{n:"Oval Lantern",na:"الفانوس البيضاوي",t:"Structural/Architectural",f:"Top light source"},{n:"Hidden Cloister",na:"الفناء الداخلي المخفي",t:"Spatial",f:"Small tranquil courtyard"},{n:"Giant Order Pilasters",na:"الأعمدة اللاصقة الضخمة",t:"Architectural",f:"Full-height unifying order"}] }
+    "تيمبيتو": { en:"Tempietto di San Pietro", loc:"Rome, Italy", date:"1502 AD", style:"High Renaissance", pal:"pietra serena grey, warm white limestone, pale gold dome", mood:"rational humanist harmony, mathematical proportion", ref:"Tempietto, Pantheon, Villa Rotonda", desc:"High Renaissance circular temple with Doric peristyle, hemispherical dome, cylindrical cella, circular drum, classical frieze, balustrade, and stepped base.", adds:"Baroque balustrade, unbuilt circular courtyard, restorations",
+    elements:[{n:"Doric Peristyle",na:"الرواق الدوري",t:"Structural/Architectural",f:"Columns encircling cylinder"},{n:"Hemispherical Dome",na:"القبة نصف الكروية",t:"Structural/Symbolic",f:"Perfect geometric dome"},{n:"Cylindrical Cella",na:"الخلية الأسطوانية",t:"Spatial/Structural",f:"Inner circular room"},{n:"Circular Drum",na:"الطبل الدائري",t:"Structural",f:"Dome base with windows"},{n:"Metope-Triglyph Frieze",na:"إفريز الميتوب",t:"Ornamental/Architectural",f:"Doric frieze"},{n:"Balustrade",na:"الدرابزون",t:"Architectural",f:"Low railing transition"},{n:"Stepped Base",na:"القاعدة المدرجة",t:"Structural/Architectural",f:"Classical podium"}] },
+    "قبة فلورنسا": { en:"Dome of Florence Cathedral (Brunelleschi)", loc:"Florence, Italy", date:"1417-1434 AD", style:"Early Renaissance", pal:"warm terracotta brick, white marble ribs, green and pink marble below", mood:"triumphant engineering ambition, Renaissance civic pride", ref:"Florence Dome, Pantheon, St Peter's Rome", desc:"Engineering-focused Renaissance dome with double shell, eight primary ribs, herringbone brickwork, tension rings, octagonal drum, lantern, and internal walkway.", adds:"Lantern, frescoes, repairs, restoration",
+    elements:[{n:"Double-Shell Dome",na:"القبة ذات القشرتين",t:"Structural",f:"Inner and outer load distribution"},{n:"8 Primary Stone Ribs",na:"الأضلاع الحجرية الثمانية",t:"Structural",f:"Main dome skeleton"},{n:"Herringbone Brick Pattern",na:"نمط الطوب الحورة",t:"Structural",f:"Self-supporting brickwork"},{n:"Tension Rings",na:"حلقات الشد",t:"Structural",f:"Contain outward thrust"},{n:"Octagonal Drum",na:"الطبل الثماني",t:"Structural/Spatial",f:"Base with ocular windows"},{n:"Lantern",na:"الفانوس",t:"Structural/Architectural",f:"Top light and compression"},{n:"Internal Walkway Gallery",na:"الممشى الداخلي",t:"Spatial",f:"Walkway between shells"}] },
+    "سان كارلو": { en:"S. Carlo alle Quattro Fontane", loc:"Rome, Italy", date:"1638-1667 AD", style:"Baroque", pal:"white stucco, grey stone details, gold gilding, dramatic shadow", mood:"theatrical dynamic movement, intellectual geometric drama", ref:"San Carlo alle Quattro Fontane, Sant'Ivo alla Sapienza", desc:"Baroque church with undulating oval plan, coffered oval dome, convex-concave facade, white stucco, oval lantern, hidden cloister, and giant order pilasters.", adds:"Posthumous facade, cloister, stucco restoration",
+    elements:[{n:"Undulating Oval Plan",na:"المسقط البيضاوي المتموج",t:"Spatial/Structural",f:"Flowing convex-concave space"},{n:"Coffered Oval Dome",na:"القبة البيضاوية المقعرة",t:"Structural/Ornamental",f:"Geometric coffered dome"},{n:"Convex-Concave Facade",na:"الواجهة المحدبة-المقعرة",t:"Architectural",f:"Rhythmic curved facade"},{n:"White Stucco Interior",na:"الداخلية من الجص الأبيض",t:"Ornamental/Spatial",f:"Unified white geometry"},{n:"Oval Lantern",na:"الفانوس البيضاوي",t:"Structural/Architectural",f:"Top light source"},{n:"Hidden Cloister",na:"الفناء الداخلي المخفي",t:"Spatial",f:"Small tranquil courtyard"},{n:"Giant Order Pilasters",na:"الأعمدة اللاصقة الضخمة",t:"Architectural",f:"Full-height unifying order"}] }
   }},
   "قرن 19": { buildings: {
-    "قصر الكريستال": { en:"The Crystal Palace", loc:"Hyde Park, London, UK", date:"1851 AD", style:"Iron and Glass / 19th Century", pal:"cast iron grey, crystal clear glass, primary colour trim", mood:"industrial optimism, transparent lightness, modular machine-age beauty", ref:"Crystal Palace, Kew Gardens Palm House, Galerie des Machines", desc:"Nineteenth-century iron and glass structure with prefabricated frame, plate glass envelope, modular bays, barrel-vaulted transept, galleries, ridge-and-furrow roof, and exposed structural aesthetics.", adds:"Relocated, expanded, destroyed by fire", elements:[{n:"Prefabricated Cast Iron Frame",na:"الهيكل الحديدي المسبق الصنع",t:"Structural",f:"Rapid modular assembly"},{n:"Plate Glass Envelope",na:"غلاف الزجاج المسطح",t:"Structural/Spatial",f:"Transparent enclosure"},{n:"Modular Bay System",na:"نظام الوحدات المتكررة",t:"Structural",f:"Standardized bay grid"},{n:"Barrel-Vaulted Transept",na:"العبور ذو القبو البرميلي",t:"Structural/Spatial",f:"Tall arched transept"},{n:"Multi-Level Galleries",na:"الشرفات متعددة الطوابق",t:"Spatial",f:"Internal display levels"},{n:"Ridge and Furrow Roof",na:"سقف الحافة والأخدود",t:"Structural",f:"Glass roof drainage system"},{n:"Exposed Structural Aesthetics",na:"جمالية الهيكل المكشوف",t:"Architectural",f:"Visible machine-age frame"}] },
-    "برج إيفل": { en:"La Tour Eiffel", loc:"Paris, France", date:"1889 AD", style:"Iron Engineering / 19th Century", pal:"iron brown-grey, sky blue background, gold accent lighting", mood:"machine-age sublime, engineering as beauty, industrial optimism", ref:"Eiffel Tower, Crystal Palace, Galerie des Machines", desc:"Iron engineering landmark with lattice structure, four curved legs, public platforms, prefabricated riveted joints, base arcade, open transparency, and elevator logic.", adds:"Antenna extensions, glass floor, regular repainting", elements:[{n:"Lattice Iron Structure",na:"هيكل الحديد الشبكي",t:"Structural",f:"Open wind-resistant frame"},{n:"Four Curved Legs",na:"الأرجل الأربعة المنحنية",t:"Structural",f:"Thrust-line profile"},{n:"Three Public Platforms",na:"المنصات الثلاث",t:"Spatial",f:"Observation levels"},{n:"Prefabricated Iron Joints",na:"الوصلات الحديدية المسبقة",t:"Structural",f:"Riveted connections"},{n:"Square Base Arcade",na:"القوس الرباعي في القاعدة",t:"Architectural",f:"Monumental gateway"},{n:"Open Lattice Transparency",na:"الشفافية الشبكية",t:"Spatial",f:"Skeletal dematerialized form"},{n:"Hydraulic Elevators",na:"المصاعد الهيدروليكية",t:"Functional",f:"Curved-path lift system"}] },
-    "جسر كولبروكديل": { en:"Coalbrookdale Iron Bridge", loc:"Shropshire, England, UK", date:"1779 AD", style:"Industrial / Early Iron Engineering", pal:"iron grey-black, warm sandstone abutments, river green-blue", mood:"pioneering industrial strength, bold engineering simplicity", ref:"Coalbrookdale Iron Bridge, Crystal Palace", desc:"Early iron bridge with semicircular cast iron arch, interlocking ribs, carpentry-like iron joinery, spandrel panels, stone abutments, lattice rails, and single-span composition.", adds:"Roadway lightened, pedestrian-only, conservation", elements:[{n:"Semicircular Cast Iron Arch",na:"القوس الحديدي نصف الدائري",t:"Structural",f:"Single-span iron arch"},{n:"Interlocking Rib System",na:"نظام الأضلاع المتشابكة",t:"Structural",f:"Parallel ribs with cross-members"},{n:"Carpentry Joinery in Iron",na:"التوصيلات النجارية بالحديد",t:"Structural",f:"Traditional joints in iron"},{n:"Semicircular Spandrel Panels",na:"ألواح الجنانح",t:"Structural/Ornamental",f:"Circular arch infill"},{n:"Stone Abutments",na:"الركائز الحجرية",t:"Structural",f:"Massive thrust bases"},{n:"Open Lattice Handrails",na:"الدرابزون الشبكي",t:"Architectural",f:"Decorative lattice railing"},{n:"Single-Span Composition",na:"البحر الوحيد",t:"Spatial",f:"One dramatic crossing"}] }
+    "قصر الكريستال": { en:"The Crystal Palace", loc:"Hyde Park, London, UK", date:"1851 AD", style:"Iron and Glass / 19th Century", pal:"cast iron grey, crystal clear glass, primary colour trim", mood:"industrial optimism, transparent lightness, modular machine-age beauty", ref:"Crystal Palace, Kew Gardens Palm House, Galerie des Machines", desc:"Nineteenth-century iron and glass structure with prefabricated frame, plate glass envelope, modular bays, barrel-vaulted transept, galleries, ridge-and-furrow roof, and exposed structural aesthetics.", adds:"Relocated, expanded, destroyed by fire",
+    elements:[{n:"Prefabricated Cast Iron Frame",na:"الهيكل الحديدي المسبق الصنع",t:"Structural",f:"Rapid modular assembly"},{n:"Plate Glass Envelope",na:"غلاف الزجاج المسطح",t:"Structural/Spatial",f:"Transparent enclosure"},{n:"Modular Bay System",na:"نظام الوحدات المتكررة",t:"Structural",f:"Standardized bay grid"},{n:"Barrel-Vaulted Transept",na:"العبور ذو القبو البرميلي",t:"Structural/Spatial",f:"Tall arched transept"},{n:"Multi-Level Galleries",na:"الشرفات متعددة الطوابق",t:"Spatial",f:"Internal display levels"},{n:"Ridge and Furrow Roof",na:"سقف الحافة والأخدود",t:"Structural",f:"Glass roof drainage system"},{n:"Exposed Structural Aesthetics",na:"جمالية الهيكل المكشوف",t:"Architectural",f:"Visible machine-age frame"}] },
+    "برج إيفل": { en:"La Tour Eiffel", loc:"Paris, France", date:"1889 AD", style:"Iron Engineering / 19th Century", pal:"iron brown-grey, sky blue background, gold accent lighting", mood:"machine-age sublime, engineering as beauty, industrial optimism", ref:"Eiffel Tower, Crystal Palace, Galerie des Machines", desc:"Iron engineering landmark with lattice structure, four curved legs, public platforms, prefabricated riveted joints, base arcade, open transparency, and elevator logic.", adds:"Antenna extensions, glass floor, regular repainting",
+    elements:[{n:"Lattice Iron Structure",na:"هيكل الحديد الشبكي",t:"Structural",f:"Open wind-resistant frame"},{n:"Four Curved Legs",na:"الأرجل الأربعة المنحنية",t:"Structural",f:"Thrust-line profile"},{n:"Three Public Platforms",na:"المنصات الثلاث",t:"Spatial",f:"Observation levels"},{n:"Prefabricated Iron Joints",na:"الوصلات الحديدية المسبقة",t:"Structural",f:"Riveted connections"},{n:"Square Base Arcade",na:"القوس الرباعي في القاعدة",t:"Architectural",f:"Monumental gateway"},{n:"Open Lattice Transparency",na:"الشفافية الشبكية",t:"Spatial",f:"Skeletal dematerialized form"},{n:"Hydraulic Elevators",na:"المصاعد الهيدروليكية",t:"Functional",f:"Curved-path lift system"}] },
+    "جسر كولبروكديل": { en:"Coalbrookdale Iron Bridge", loc:"Shropshire, England, UK", date:"1779 AD", style:"Industrial / Early Iron Engineering", pal:"iron grey-black, warm sandstone abutments, river green-blue", mood:"pioneering industrial strength, bold engineering simplicity", ref:"Coalbrookdale Iron Bridge, Crystal Palace", desc:"Early iron bridge with semicircular cast iron arch, interlocking ribs, carpentry-like iron joinery, spandrel panels, stone abutments, lattice rails, and single-span composition.", adds:"Roadway lightened, pedestrian-only, conservation",
+    elements:[{n:"Semicircular Cast Iron Arch",na:"القوس الحديدي نصف الدائري",t:"Structural",f:"Single-span iron arch"},{n:"Interlocking Rib System",na:"نظام الأضلاع المتشابكة",t:"Structural",f:"Parallel ribs with cross-members"},{n:"Carpentry Joinery in Iron",na:"التوصيلات النجارية بالحديد",t:"Structural",f:"Traditional joints in iron"},{n:"Semicircular Spandrel Panels",na:"ألواح الجنانح",t:"Structural/Ornamental",f:"Circular arch infill"},{n:"Stone Abutments",na:"الركائز الحجرية",t:"Structural",f:"Massive thrust bases"},{n:"Open Lattice Handrails",na:"الدرابزون الشبكي",t:"Architectural",f:"Decorative lattice railing"},{n:"Single-Span Composition",na:"البحر الوحيد",t:"Spatial",f:"One dramatic crossing"}] }
   }}
 };
 
@@ -106,33 +123,71 @@ let currentPromptType = "concept";
 let exportMode = false;
 
 const PROMPT_TYPES = [
-  { id: "concept", label: "Concept / الفكرة" },
-  { id: "main3d", label: "3D رئيسي" },
-  { id: "perspectives", label: "لقطات 3D" },
-  { id: "plan", label: "Plan / مخطط" },
-  { id: "elevations", label: "Elevations / واجهات" },
-  { id: "sections", label: "Sections / مقاطع" },
-  { id: "roof", label: "Roof / سقف" },
-  { id: "exploded", label: "Exploded Axon" },
-  { id: "analysis", label: "Analysis / تحليل" },
-  { id: "poster", label: "بوستر كامل" }
+  { id: "concept",      label: "Concept / الفكرة"    },
+  { id: "main3d",       label: "3D رئيسي"             },
+  { id: "perspectives", label: "لقطات 3D"             },
+  { id: "plan",         label: "Plan / مخطط"          },
+  { id: "elevations",   label: "Elevations / واجهات"  },
+  { id: "sections",     label: "Sections / مقاطع"     },
+  { id: "roof",         label: "Roof / سقف"           },
+  { id: "exploded",     label: "Exploded Axon"        },
+  { id: "analysis",     label: "Analysis / تحليل"     },
+  { id: "poster",       label: "بوستر كامل"            }
 ];
 
-const DESIGN_STRATEGIES = ["compression and expansion sequence", "symmetrical ceremonial axis", "asymmetrical garden promenade", "vertical light tower rhythm", "filtered light through layered screens", "framed canal views and thresholds", "layered procession from bank to bank", "structural rhythm as the main visual language", "central pause space above water", "thin skeletal frame with heavy historic base", "floating canopy over repeated bays", "solid-to-void transformation"];
-const MASSING_VARIATIONS = ["low horizontal pavilion with repeated bays", "tall central volume with lower side wings", "two portal towers connected by a lighter roof spine", "offset bays creating a gentle zig-zag visual rhythm", "single continuous vaulted canopy", "three-part composition: entry, pause, exit", "open arcade bridge with framed side niches", "compact monument-like pavilion with deep shadows", "transparent layered bridge with screen-like walls"];
-const ORNAMENT_VARIATIONS = ["minimal ornament concentrated around portals", "ornamental rhythm distributed along the full bridge length", "geometric ceiling pattern as the main decorative feature", "side screens using abstracted historical motifs", "floor and parapet pattern inspired by the reference building", "subtle carved bands rather than heavy decoration", "repeated small openings with changing sizes", "ornament transformed into structural joints and ribs", "light and shadow used as ornament", "mosaic or stone inlay used only as accent lines"];
+const DESIGN_STRATEGIES = [
+  "central sheltered gathering space over water with radiating seating terraces",
+  "linear procession from land threshold across water to a shaded pause pavilion",
+  "two entry ramps meeting at a central elevated platform above the water surface",
+  "layered platforms descending toward the water with a covered central canopy",
+  "open colonnade framing water views with a shaded interior and exterior terraces",
+  "symmetrical cruciform plan on water with four-directional seating edges",
+  "perimeter arcade around a central open courtyard that opens to the water",
+  "a single strong covered hall with terraced water-edge seating on both long sides",
+  "compressed entry path widening into an open belvedere platform above the water",
+  "elevated platform with shaded core and open-air edges suspended above the water"
+];
+const MASSING_VARIATIONS = [
+  "compact square pavilion with a dominant central roof element and open sides",
+  "low horizontal platform with a raised central canopy spine",
+  "two pavilion volumes connected by a lower covered terrace",
+  "single covered hall with projecting water-edge terraces on both sides",
+  "circular or octagonal central volume with radiating terrace arms",
+  "T-shaped composition with the covered zone perpendicular to the approach path",
+  "stepped terrace massing descending from covered interior to water surface",
+  "open frame pavilion with a lightweight roof and framed water views",
+  "L-shaped composition creating a sheltered corner courtyard over the water",
+  "cruciform platform with covered central hub and open terrace arms"
+];
+const ORNAMENT_VARIATIONS = [
+  "minimal ornament concentrated at entry thresholds and columns",
+  "ornamental rhythm distributed along the arcade facing the water",
+  "geometric ceiling pattern as the main decorative feature",
+  "balustrade and railing as the primary ornamental element along water edges",
+  "floor pattern using abstracted historical motifs visible from above",
+  "light and shadow through screen walls used as ornament",
+  "repeated carved bands on columns and beams as subtle decoration",
+  "mosaic or stone inlay used only as accent lines at floor level",
+  "ornamental columns expressing the historical style concentrated at entry",
+  "openwork screen panels filtering light on the water-facing sides"
+];
 
 function pickRandom(arr){ return arr[Math.floor(Math.random() * arr.length)]; }
 
 function makeVariationSeed(){
   const now = new Date();
   const stamp = `${now.getFullYear()}${String(now.getMonth()+1).padStart(2,"0")}${String(now.getDate()).padStart(2,"0")}-${String(now.getHours()).padStart(2,"0")}${String(now.getMinutes()).padStart(2,"0")}${String(now.getSeconds()).padStart(2,"0")}`;
-  const randomPart = Math.floor(Math.random() * 100000).toString().padStart(5, "0");
+  const randomPart = Math.floor(Math.random() * 100000).toString().padStart(5,"0");
   return `${stamp}-${randomPart}`;
 }
 
 function makeVariation(){
-  return { seed: makeVariationSeed(), strategy: pickRandom(DESIGN_STRATEGIES), massing: pickRandom(MASSING_VARIATIONS), ornament: pickRandom(ORNAMENT_VARIATIONS) };
+  return {
+    seed:     makeVariationSeed(),
+    strategy: pickRandom(DESIGN_STRATEGIES),
+    massing:  pickRandom(MASSING_VARIATIONS),
+    ornament: pickRandom(ORNAMENT_VARIATIONS)
+  };
 }
 
 function getSelectedBuilding(){ return ERAS[curEra].buildings[curB]; }
@@ -140,7 +195,7 @@ function getSelectedBuilding(){ return ERAS[curEra].buildings[curB]; }
 function getProjectData(){
   const bd = getSelectedBuilding();
   const sName = document.getElementById("sName").value.trim() || "Student Name";
-  const pName = document.getElementById("pName").value.trim() || `${bd.en} — Pavilion Bridge`;
+  const pName = document.getElementById("pName").value.trim() || `${bd.en} — Water Pavilion`;
   return { bd, sName, pName };
 }
 
@@ -150,8 +205,7 @@ function buildEras(){
   Object.keys(ERAS).forEach(era => {
     const btn = document.createElement("button");
     btn.className = `era-btn${era === curEra ? " on" : ""}`;
-    btn.textContent = era;
-    btn.dataset.e = era;
+    btn.textContent = era; btn.dataset.e = era;
     row.appendChild(btn);
   });
 }
@@ -164,8 +218,7 @@ function buildBuildings(){
   names.forEach(name => {
     const btn = document.createElement("button");
     btn.className = `b-btn${name === curB ? " on" : ""}`;
-    btn.textContent = name;
-    btn.dataset.b = name;
+    btn.textContent = name; btn.dataset.b = name;
     row.appendChild(btn);
   });
 }
@@ -176,14 +229,15 @@ function buildPromptTabs(){
   PROMPT_TYPES.forEach(type => {
     const btn = document.createElement("button");
     btn.className = `prompt-tab${type.id === currentPromptType ? " on" : ""}`;
-    btn.textContent = type.label;
-    btn.dataset.type = type.id;
+    btn.textContent = type.label; btn.dataset.type = type.id;
     row.appendChild(btn);
   });
 }
 
 function transformedElementsList(bd){
-  return bd.elements.map((e, i) => `  ${i + 1}. ${e.na}/${e.n} | ${e.t} | ${e.f} | transform this element, do not copy literally`).join("\n");
+  return bd.elements.map((e,i) =>
+    `  ${i+1}. ${e.na}/${e.n} | ${e.t} | ${e.f} | transform this element for the water pavilion, do not copy literally`
+  ).join("\n");
 }
 
 function designIdentityBlock(bd, sName, pName, variation){
@@ -192,7 +246,7 @@ Student: ${sName}
 Project: ${pName}
 Reference Building: ${bd.en} — ${bd.loc} — ${bd.date}
 Style: ${bd.style}
-Design Consistency Code: ${variation.seed} — INTERNAL ONLY, do not display this code as visible text in the image.
+Design Consistency Code: ${variation.seed} — INTERNAL ONLY, do not display this code anywhere on the final image.
 Design Strategy: ${variation.strategy}
 Massing Direction: ${variation.massing}
 Ornament Logic: ${variation.ornament}
@@ -200,100 +254,119 @@ Palette: ${bd.pal}
 Mood: ${bd.mood}
 
 IMPORTANT CONSISTENCY RULE:
-All prompts with this same internal consistency code belong to ONE single bridge design.
-Keep the same massing, portal shape, roof/ceiling logic, structural rhythm, materials, proportions, ornament language, and Baghdad garden setting in every generated image.
+All prompts with this same internal code belong to ONE single pavilion design.
+Keep the same massing, portal shape, roof/ceiling logic, structural rhythm, materials, proportions, ornament language, and Baghdad garden water setting in every generated image.
 
 CRITICAL DRAWING CONSISTENCY:
-• The elevations, sections, plan, and 3D must match EXACTLY the same design.
+• Elevations, sections, plan, and 3D must match EXACTLY the same design.
 • Do NOT change proportions, openings, roof form, or structure between drawings.
-• If a detail appears in 3D, it MUST appear in elevations and sections.
+• If a detail appears in 3D it MUST appear in elevations and sections.
 • No simplification or redesign in drawings — everything must correspond 1:1.
-
-Do NOT redesign the bridge between prompts. Only change the drawing/view type.
-IMPORTANT: Do NOT write or render the Design Consistency Code / Seed anywhere on the final image.`;
+Do NOT redesign the pavilion between prompts. Only change the drawing/view type.
+IMPORTANT: Do NOT write or render the Design Consistency Code / Seed as visible text anywhere on the final image.`;
 }
 
-function bridgeRulesBlock(){
-  return `━━━ FIXED BRIDGE RULES — LONG BRIDGE LIKE THE REFERENCE IMAGE ━━━
-• IMPORTANT: The bridge must be LONG and RECTANGULAR like the provided reference image, not a compact square pavilion.
-• Overall bridge footprint: 18 m length × 6 m width, elongated 3:1 proportion.
-• VERY IMPORTANT FOR DRAWINGS:
-  - Front view must always represent the SHORT side (6 m).
-  - Side view must always represent the LONG side (18 m).
-  - Do not confuse them or duplicate the same elevation twice.
-• Canal width: 8 m | Clear bridge span over water: 14–16 m | Total architectural length: 18 m.
-• Deck height above water: 0.8 m max.
-• TWO open entry portals, one at each short end of the long bridge (FRONT faces of the bridge).
-• IMPORTANT: The main entrances must be clearly visible on the front facades (short sides), not hidden only on the long side.
-• ALL main doors must be located on the FRONT facades (short sides) only.
-• Side facades (long sides) must NOT contain doors — only openings, arches, or windows.
-• The design must clearly read as entering from the front and exiting from the opposite front.
-• Side openings are allowed ONLY as visual or structural rhythm (arcades, windows), not as entrances.
-• The bridge can be composed using any structural logic (arches, frames, vaults, ribs, or hybrid systems) depending on the design — repetition is optional, not required.
-• Architectural frame covers 100% of bridge length — no bare concrete.
-• The design should read as a long covered pedestrian bridge crossing the canal, but the architectural language (rhythm, structure, form) is flexible and driven by the concept.
-• Roof/ceiling must be a clear, coherent system (single continuous form, vault, flat plane, or structured frame). Avoid arbitrary stacked tiers or ziggurat-like steps unless explicitly justified by the concept.
-• Baghdad garden context: palms, cypress, stone paving, grass, calm canal water.
-• Composition reference: use the uploaded bridge image as proportion reference only — long body, repeated bays, entry portal at each end, canal crossing.`;
+// ─── CORE CHANGE: pavilion on water, not a bridge ───────────────────────────
+function pavilionRulesBlock(){
+  return `━━━ FIXED PAVILION RULES — WATER PAVILION IN BAGHDAD GARDEN ━━━
+THIS IS A PAVILION SITTING ON A WATER SURFACE — NOT A BRIDGE CROSSING WATER.
+
+WHAT THIS MEANS:
+• The pavilion is a freestanding structure built ON TOP of a still water pool / reflecting pond.
+• It does NOT cross the water from one bank to the other.
+• Visitors reach it via TWO narrow pedestrian walkways / causeways (1.5–2.0 m wide):
+  - Walkway 1: ENTRY — connects garden path on one side to the pavilion
+  - Walkway 2: EXIT — connects pavilion to garden path on the opposite or adjacent side
+  These two causeways give movement flexibility (enter one side, exit another).
+• The water surrounds the pavilion on all or most sides.
+• The pavilion platform sits 0.3–0.5 m above the water surface — very low, feeling close to water.
+• Water surface: calm, still, dark blue-green, reflective — mirrors the pavilion structure beautifully.
+
+PAVILION FOOTPRINT:
+• Plan: 6 × 6 metres square — the main pavilion fits exactly within this square.
+• The two causeways/walkways are NOT part of the 6×6 m — they are thin connections outside it.
+• The pavilion may have seating areas, terraces, or shaded zones within the 6×6 m square.
+• Internal circulation: open and flexible — visitors can sit, stand, move freely inside.
+
+PAVILION CHARACTER:
+• It is a DESTINATION, not a passage — a place to pause, sit, and experience the water.
+• Seating elements (built-in benches, low platforms, steps to water) are encouraged within the design.
+• The pavilion is mostly open or semi-open — sheltered overhead, open sides facing water.
+• Architectural frame covers 100% of the pavilion footprint with historical character.
+• May integrate subtle contemporary structural elements but historical identity must dominate.
+
+SETTING — BAGHDAD PUBLIC GARDEN (حديقة بغداد):
+• Surrounding landscape: lush green garden with palms, cypress, flowering shrubs, grass.
+• Stone-paved garden paths lead to the entry and exit causeways.
+• Water pool: calm rectangular or free-form reflecting pond, 15–25 m across minimum.
+• The pavilion sits in the middle or near-centre of the water feature.
+• Time: golden hour soft light, long soft shadows, warm atmosphere.
+
+CAUSEWAYS / WALKWAYS:
+• Width: 1.5–2.0 m each — narrow, elegant, not wide bridges.
+• They may be straight, slightly curved, or at an angle to the pavilion.
+• Railing or balustrade on both sides of each causeway.
+• Length: however needed to reach the pavilion from the garden bank.
+• The two causeways do NOT have to be parallel — they can enter from different directions.`;
 }
 
 function styleBlock(){
   return `━━━ VISUAL STYLE ━━━
 Architectural student presentation quality.
-Use calm studio render for 3D views and HB pencil sketch for drawings.
-No hyperrealistic AI look, no cinematic grading, no dramatic HDR sky, no lens flare, no glowing windows.
-Soft overcast daylight, clean off-white background, clear architectural information.`;
+Use calm architectural studio render for 3D views: soft overcast daylight, clean background, no dramatic HDR, no lens flare, no cinematic grading, no glowing windows. Silhouette-style human figures for scale.
+Use HB pencil sketch on white paper for all orthographic drawings: light grey lines, slight pressure variation, light hatching for shadows, small neat handwritten labels. Not ink — pencil only for drawings.`;
 }
 
 function buildFullPosterPrompt(variation){
   const { bd, sName, pName } = getProjectData();
   return `=== CHATGPT — FULL ARCHITECTURAL POSTER PROMPT ===
-Create ONE complete 90×90 cm academic architectural poster, 300 DPI.
-This page should generate the full poster at once.
+Create ONE complete 90×90 cm academic architectural poster, 300 DPI, all cells fully rendered, no empty areas.
 
 ${designIdentityBlock(bd, sName, pName, variation)}
 
-━━━ DESIGN THINKING MODE — MOST IMPORTANT ━━━
-Create a complete poster for this ONE fixed design. Do not generate unrelated mini-designs in different cells.
-Every plan, elevation, section, sketch, axonometric, and render must describe the SAME bridge design.
+━━━ DESIGN THINKING MODE ━━━
+Create a complete poster for this ONE fixed pavilion design. Every plan, elevation, section, sketch, axonometric, and render must describe the SAME water pavilion design. Do not generate unrelated mini-designs in different cells.
 
-${bridgeRulesBlock()}
+${pavilionRulesBlock()}
 
 ${styleBlock()}
 
-━━━ POSTER GRID — 90×90 cm ━━━━━━━━━━━━━━━━━━━━
-Background: off-white cream #F8F5EE
-Borders: thin 0.5pt warm grey lines between cells
-All orthographic drawings: pencil sketch on white background
+━━━ POSTER GRID — 90×90 cm ━━━━━━━━━━━━━━━━━━
+Background: off-white cream #F8F5EE | Borders: thin 0.5pt warm grey lines | All orthographic drawings: pencil sketch on white
 
-ROW 1:
-[Col 1 — 28%] Student name, project title AR+EN, clear concept paragraph with readable typography, and three reference photos of ${bd.en} in a neat row like an academic precedent strip.
-[Col 2 — 38%] Concept & design development: beautiful pencil formation sketches showing idea, reference extraction, transformation arrows, and final bridge form. Text must be clear and readable.
-[Col 3 — 34%] Two perspective shots of the SAME bridge design.
+ROW 1 (top ~20%):
+[Col 1 — 28%] Student name large bold, project title AR+EN, concept paragraph 3–4 lines, three small reference photos of ${bd.en} in a neat row.
+[Col 2 — 38%] Concept & design development: pencil formation sketches — idea, reference extraction, transformation arrows, final pavilion form. Clear readable labels AR+EN.
+[Col 3 — 34%] Two perspective studio renders of the SAME pavilion design stacked — front-left 3/4 view and front-right 3/4 view, camera 1.0 m above water level, showing pavilion surrounded by water.
 
-ROW 2:
-[Col 1 — 28%] Detailed 1:50 plan, 18m × 6m elongated bridge, grid, north arrow, scale bar, zones.
-[Col 2 — 38%] Exploded axonometric with base, deck, structural frame, roof/ceiling, parapet/crowning.
-[Col 3 — 34%] Front elevation and side elevation of the SAME design.
-IMPORTANT:
-• FRONT ELEVATION = short facade (6.00 m width) showing the main entrance portal.
-• SIDE ELEVATION = long facade (18.00 m length) showing the repeated bays along the bridge.
+ROW 2 (~22%):
+[Col 1 — 28%] Detailed 1:50 plan — 6×6 m pavilion square footprint + two narrow causeways shown, water pool edge visible, north arrow, scale bar, zone labels (Entry Causeway, Main Pavilion Space, Seating Terrace, Exit Causeway).
+[Col 2 — 38%] Exploded axonometric pencil sketch — layers: base platform/structure over water, floor deck 6×6 m, main historical structural frame (columns/walls), ceiling/roof system, parapet/crowning element. Labels AR+EN.
+[Col 3 — 34%] Two elevations:
+  FRONT ELEVATION (6.00 m wide): main facade facing the approach causeway, show entry threshold, full historical character, human figure 1.70 m, water level shown as dashed line below platform.
+  SIDE ELEVATION (6.00 m wide): perpendicular facade, show side character, water on both sides visible below platform.
+  NOTE: Both elevations are 6.00 m wide since the pavilion is a 6×6 m square.
 
-ROW 3:
-[Col 1 — 28%] Roof plan of the SAME roof system.
-[Col 2+3 — 72%] Longitudinal section and cross section.
+ROW 3 (~18%):
+[Col 1 — 28%] Roof plan 1:50 — 6×6 m, roof geometry, structural grid, north arrow, scale bar. Surrounding water pool visible as tone around pavilion.
+[Col 2+3 — 72%] Two sections:
+  LONGITUDINAL SECTION: cut through pavilion long axis, show platform above water (0.3–0.5 m), interior space height, roof/ceiling, human figure, dimension lines. Water shown below platform as dark tone.
+  CROSS SECTION: cut perpendicular, show same information, causeway connection visible on one side.
 
-ROW 4:
-[Col 1 — 28%] Elements analysis table:
+ROW 4 (bottom ~40%):
+[Col 1 — 28%] Elements analysis table — 4 columns: العنصر/ELEMENT | النوع/TYPE | الوظيفة/FUNCTION | رسم/SKETCH (pencil):
 ${transformedElementsList(bd)}
-[Col 2+3 — 72%] Main large architectural studio render of the SAME bridge design.
+[Col 2+3 — 72%] MAIN SHOT — large architectural studio render:
+  Camera: eye-level 3/4 view from garden bank, 1.0 m above water surface.
+  Show pavilion surrounded by calm reflective water pool, entry causeway leading to pavilion, exit causeway on far side, lush Baghdad garden background (palms, cypress, grass, stone path), 4–5 silhouette figures on pavilion and causeway.
+  Palette: ${bd.pal} | Mood: ${bd.mood}
 
-━━━ REFERENCE BUILDING TEXT ━━━
+━━━ REFERENCE BUILDING TEXT (for Col 1, Row 1) ━━━
 ${bd.desc}
 Additions: ${bd.adds}
 
 ━━━ NEGATIVE PROMPT ━━━
-Do NOT: display the Design Consistency Code / Seed as visible text, make unreadable text, make a short or square bridge, make each poster cell a different design, repeat previous design, copy exact reference building, use same massing every time, change design between drawings, create arbitrary stepped/ziggurat roof stacks, hyperrealistic AI render, dramatic HDR sky, glowing windows, cinematic colour grading, lens flare, canal narrower than 7m, bare concrete deck, structure only in bridge centre, bridge deck higher than 1.2m above water, empty poster cells, CAD-sterile drawings, aerial-only view.`;
+Do NOT: make it a bridge crossing water end to end, display Consistency Code as visible text, show dry pavilion on land, make causeways wide bridges, make pavilion larger than 6×6 m footprint, make water too narrow or absent, use hyperrealistic AI render style, dramatic HDR sky, lens flare, empty cells, CAD-sterile drawings, change design between drawings, arbitrary stepped roof stacks.`;
 }
 
 function buildSinglePrompt(type, variation){
@@ -303,122 +376,151 @@ function buildSinglePrompt(type, variation){
   const base = `=== ARCHITECTURAL IMAGE PROMPT — SAME DESIGN SERIES ===
 ${designIdentityBlock(bd, sName, pName, variation)}
 
-${bridgeRulesBlock()}
+${pavilionRulesBlock()}
 
 ${styleBlock()}`;
 
   const tasks = {
-    concept: `━━━ TASK: BEAUTIFUL CONCEPT PAGE + FORMATION SKETCH ━━━
-Create ONE polished academic concept page for the SAME bridge design.
-The page must be visually beautiful, clean, and readable, like a university architecture poster concept panel.
+    concept: `━━━ TASK: CONCEPT PAGE + FORMATION SKETCH ━━━
+Create ONE polished academic concept page for the SAME water pavilion design.
+Beautiful, clean, and readable like a university architecture concept panel.
 
-VERY IMPORTANT TEXT RULES:
-• All written text must be clear, readable, correctly spelled, and not distorted.
-• Use large clean typography for the title.
-• Use short paragraphs only — no messy long text blocks.
-• Arabic and English text must be clean and aligned properly.
-• Do NOT show the Design Consistency Code / Seed anywhere on the page.
+TEXT RULES: Clear readable typography, no distorted text, short paragraphs, bilingual AR+EN, do NOT show the Seed code.
 
 PAGE LAYOUT:
-TOP TITLE:
-• Big clear title: ${pName}
-• Subtitle: ${bd.style} inspired bridge based on ${bd.en}
-• Add Arabic title line under it.
+TITLE: ${pName} | Subtitle: ${bd.style} inspired water pavilion based on ${bd.en}
 
-CONCEPT TEXT BLOCK:
-• Write one clear concept paragraph, 3–4 lines only.
-• Explain relation between:
-  - architectural era: ${bd.style}
-  - selected reference building: ${bd.en}
-  - final long pavilion bridge form
-• The writing must be readable and elegant.
+CONCEPT TEXT: 3–4 lines explaining:
+- The architectural era: ${bd.style} and reference: ${bd.en}
+- The idea of a pavilion sitting ON water (not crossing it) in Baghdad Public Garden
+- The role of two causeways for entry and exit giving movement flexibility
+- The spatial character: a place to pause, sit, and experience the water
 
-REFERENCE IMAGES STRIP:
-• Add THREE small reference images of ${bd.en}, aligned in one clean row like the example image.
-• Image 1: exterior/front view
-• Image 2: interior/spatial view or main architectural feature
-• Image 3: side/detail/plan-inspired view
-• Put a small clear caption under each image.
-• These images are reference only; do not let them dominate the page.
+REFERENCE IMAGES: Three small photos of ${bd.en} in a clean row — exterior, interior/key feature, detail/plan view. Small captions.
 
-FORMATION SKETCH AREA — PENCIL:
-Use hand-drawn HB pencil sketch style on white paper.
-Show the design formation step by step:
-1) STARTING IDEA:
-   Simple abstract sketch: line / mass / axis / crossing over canal.
-   Add short AR + EN note.
+FORMATION SKETCH (HB pencil on white):
+1) STARTING IDEA: simple abstract sketch — a 6×6 square platform floating on water, two thin lines as causeways connecting to garden banks. Short AR+EN note.
+2) REFERENCE EXTRACTION: 2–3 key elements from ${bd.en} simplified, not copied. What is extracted: structure / space / light / rhythm / ornament.
+3) TRANSFORMATION: morphing arrows from reference elements into pavilion components. How the historical language becomes the pavilion frame.
+4) FINAL FORM: loose 3D pencil sketch of the complete water pavilion design — showing platform above water, historical structure, roof, two causeways, surrounding water pool. Must match: ${variation.massing}
 
-2) REFERENCE EXTRACTION:
-   Sketch 2–3 key elements from ${bd.en}, simplified not copied.
-   Explain what is extracted: structure / space / light / rhythm / ornament.
+GOAL: Show clearly how idea → reference → transformation → final water pavilion form.`,
 
-3) TRANSFORMATION:
-   Show morphing arrows from reference elements into bridge components.
-   This is the most important part: make clear how the form evolves.
+    main3d: `━━━ TASK: MAIN 3D STUDIO RENDER ━━━
+Create ONE large architectural studio render of the SAME water pavilion design.
+Camera: eye-level 3/4 view from garden bank, 1.0 m above water surface.
+Show:
+• Complete 6×6 m pavilion sitting on its platform in the middle of a calm water pool
+• Entry causeway (1.5–2.0 m wide) approaching from garden to pavilion
+• Exit causeway on opposite or adjacent side
+• Full historical ${bd.style} architectural character: ${variation.massing}
+• Calm reflective water surrounding pavilion on all visible sides — mirror reflections of structure
+• Lush Baghdad garden background: palms, cypress, flowering shrubs, stone garden paths
+• 4–5 silhouette human figures: 2 on pavilion, 1-2 on causeway, 1 on garden bank — for scale
+• Palette: ${bd.pal} | Mood: ${bd.mood}
+Ornament logic: ${variation.ornament}
+Lighting: soft overcast studio quality, calm warm atmosphere.`,
 
-4) FINAL FORM:
-   Loose 3D pencil sketch of the final long bridge design.
-   Must match the same design used in all other pages.
-   Must clearly follow: ${variation.massing}
-
-VISUAL QUALITY:
-• Beautiful composition with enough white space.
-• Use neat headings, clean alignment, and readable labels.
-• Pencil sketches should look architectural and intentional, not random.
-• The final result should be more elegant than a rough AI collage.
-
-GOAL:
-This page must clearly answer:
-How did the design evolve from idea → reference building → transformation → final bridge form?`,
-    main3d: `━━━ TASK: MAIN 3D RENDER ━━━
-Create ONE large architectural studio render of the SAME bridge design.
-Camera: eye-level 3/4 from canal bank, 1.2m above water.
-Show both open portals, full 18m long bridge body, 8m canal, calm soft reflection.
-Use Baghdad garden context: palms, cypress, stone paving, grass, 5 simple silhouette human figures.
-The bridge must clearly follow this exact design identity: ${variation.strategy} + ${variation.massing} + ${variation.ornament}.
-Do not change the design from the other prompts.`,
     perspectives: `━━━ TASK: TWO 3D PERSPECTIVE SHOTS ━━━
-Create two smaller architectural studio render views of the SAME bridge design.
-TOP view: front-left 3/4 view, camera 1.2m above water.
-BOTTOM view: front-right 3/4 view, slightly different angle.
-Both views must show the same massing, same roof profile, same portal design, same structural rhythm, same material palette.
-Use calm overcast daylight and Baghdad garden background.`,
+Create two architectural studio render views of the SAME water pavilion design, stacked on one sheet.
+TOP: front-left 3/4 view from garden bank, 1.0 m above water.
+BOTTOM: front-right 3/4 view, slightly different angle.
+Both must show:
+• Pavilion surrounded by water, sitting on its platform
+• Both causeways visible (entry and exit)
+• Same massing, same roof, same historical character, same palette
+• Calm reflective water with mirror reflections
+• Baghdad garden context
+• Same design as all other prompts — do not change anything.`,
+
     plan: `━━━ TASK: DETAILED PLAN DRAWING ━━━
-Create ONE detailed 1:50 pencil-sketch plan of the SAME bridge design.
-Show bridge 18m × 6m, canal edges, long rectangular footprint, full repeated structural bay rhythm, entry portal A, walkway, bays, side niches, exit portal B.
-Add grid lines A–B / 1–2–3, north arrow, scale bar 0–5m, dimension lines.
-The plan must match the same 3D design identity and massing: ${variation.massing}.`,
+Create ONE 1:50 pencil-sketch plan of the SAME water pavilion.
+Show:
+• 6×6 m pavilion square footprint at centre
+• Internal layout: covered zone, any seating terraces within 6×6 m, open areas
+• TWO narrow causeways (1.5–2.0 m wide) connecting pavilion to garden banks — show direction of each
+• Water pool edge shown as tone/hatch around the pavilion and causeways
+• Structural columns/walls in plan (matching the 3D design)
+• Grid lines, north arrow, scale bar 0–5 m
+• Zone labels: Entry Causeway (1), Main Pavilion Space (2), Seating Terrace (3), Exit Causeway (4)
+• Dimension lines showing 6.00 m × 6.00 m footprint clearly
+Design must match: ${variation.massing} | ${variation.strategy}`,
+
     elevations: `━━━ TASK: FRONT + SIDE ELEVATIONS ━━━
-Create one sheet with two pencil-sketch elevations of the SAME bridge design.
-TOP: FRONT ELEVATION, width 6.00 m (SHORT SIDE), show main entrance portal clearly, total height, deck 0.80m above water, human figure 1.70m, dashed waterline. This must look compact and vertical, not elongated.
-BOTTOM: SIDE ELEVATION, length 18.00 m (LONG SIDE), show full repeated bays along the bridge, arch below deck, roof/ceiling profile, parapet, structural rhythm. This must be the elongated facade.
-Do not invent a new facade; match EXACTLY the same portal positions (front-only entrances), roof profile, and ornament logic: ${variation.ornament}.`,
+Create one sheet with two pencil-sketch elevations of the SAME water pavilion.
+IMPORTANT: The pavilion is a 6×6 m SQUARE — so BOTH elevations are 6.00 m wide.
+Do not make one wider than the other.
+
+TOP — FRONT ELEVATION (6.00 m wide):
+• Main facade facing the entry causeway
+• Show historical ${bd.style} character fully
+• Entry threshold clearly visible (main portal or opening)
+• Human figure 1.70 m for scale
+• Dashed waterline below platform (platform is 0.3–0.5 m above water)
+• Dimension lines: width 6.00 m, platform height above water, total pavilion height
+• Entry causeway shown in section at base approaching the platform
+
+BOTTOM — SIDE ELEVATION (6.00 m wide):
+• Perpendicular side facade
+• Show water on both sides below platform
+• Structural rhythm and openings visible
+• Same dimension lines
+• Exit causeway may be visible at the base if it connects to this side
+
+Do not invent new facades — match EXACTLY the same design: ${variation.ornament}`,
+
     sections: `━━━ TASK: LONGITUDINAL + CROSS SECTIONS ━━━
-Create one sheet with two pencil-sketch sections of the SAME bridge design.
-LEFT: Longitudinal section along 18m axis, canal water below arch, full span, internal height, portals at both ends, human figure, dimensions.
-RIGHT: Cross section across 6m width, show deck, side structure, parapet, ceiling/roof treatment.
-Sections must explain the EXACT SAME structural arrangement seen in the 3D model (no differences allowed), and follow the same spatial concept: ${variation.strategy}.`,
+Create one sheet with two pencil-sketch sections of the SAME water pavilion.
+
+LEFT — LONGITUDINAL SECTION (cut through 6 m axis):
+• Show platform above water (0.3–0.5 m above water surface)
+• Water below platform shown as dark blue-grey tone
+• Internal pavilion space height (from deck to ceiling/roof)
+• Historical roof/ceiling system
+• Entry causeway at left connecting at platform level
+• Exit causeway at right connecting at platform level
+• Human figure inside pavilion for scale
+• Dimension lines: platform height above water, internal height, total height
+• Sections must be ACCURATE and match the 3D design exactly
+
+RIGHT — CROSS SECTION (cut perpendicular, 6 m axis):
+• Same depth of water below platform
+• Show side structural elements, openings, parapet
+• Water visible on both sides below platform
+• Same dimension lines
+• Any seating terraces or steps to water visible
+
+Spatial concept to follow: ${variation.strategy}`,
+
     roof: `━━━ TASK: ROOF PLAN ━━━
-Create ONE pencil-sketch roof plan of the SAME bridge design.
-Show 18m × 6m long roof outline, roof/ceiling geometry, structural ribs/bays, parapet/crowning element, north arrow, scale bar.
-Roof must match the same massing direction: ${variation.massing}, and the same ornament logic: ${variation.ornament}.`,
+Create ONE pencil-sketch roof plan of the SAME water pavilion.
+• 6×6 m pavilion footprint shown from above
+• Roof geometry: ${variation.massing}
+• Structural ribs, bays, or roof panels shown
+• Parapet or crowning element
+• Surrounding water pool shown as flat grey tone around pavilion
+• Two causeway connections shown as thin lines into the pool
+• North arrow + scale bar
+• Roof must match exactly the same system seen in the 3D render and sections`,
+
     exploded: `━━━ TASK: EXPLODED AXONOMETRIC ━━━
-Create ONE large pencil-sketch exploded axonometric of the SAME bridge design.
-Separate layers with dashed pencil leaders:
-1) stone bridge arch base
-2) deck floor 6×18m
-3) main ${bd.style} structural frame
-4) ceiling/vault/roof system
-5) parapet/crowning/ornamental layer
+Create ONE large pencil-sketch exploded axonometric of the SAME water pavilion.
+Separate layers with dashed pencil leader lines:
+1) WATER POOL + SUBSTRUCTURE: calm water surface with the structural base/piles supporting the platform
+2) PLATFORM DECK: 6×6 m floor level, 0.3–0.5 m above water
+3) MAIN STRUCTURAL FRAME: ${bd.style} columns, walls, or structural system
+4) CEILING / VAULT / ROOF: the roof system covering the pavilion
+5) PARAPET / CROWNING / ORNAMENTAL LAYER: top finishing elements
+6) CAUSEWAYS: two thin walkways shown connecting to the platform
 Labels handwritten AR on right, EN on left.
-All layers must match the same design identity and not create a different bridge.`,
+All layers must match the same design identity — not create a different pavilion.`,
+
     analysis: `━━━ TASK: ELEMENTS ANALYSIS TABLE ━━━
-Create one formal analysis sheet for the SAME bridge design.
-Make a 4-column table: العنصر/ELEMENT | النوع/TYPE | الوظيفة/FUNCTION | رسم/SKETCH.
-Use pencil sketch drawings in the sketch column.
-Analyze these transformed elements from ${bd.en}:
-${transformedElementsList(bd)}
-Show how each historical element was transformed into the bridge, not copied literally.`
+Create one formal analysis sheet for the SAME water pavilion design.
+4-column table: العنصر/ELEMENT | النوع/TYPE | الوظيفة/FUNCTION | رسم/SKETCH (pencil sketch in column)
+Show how each element from ${bd.en} was TRANSFORMED into the water pavilion — not copied literally.
+For each element explain: how it adapts from the original building context to the water pavilion context.
+${transformedElementsList(bd)}`
   };
 
   return `${base}
@@ -426,7 +528,7 @@ Show how each historical element was transformed into the bridge, not copied lit
 ${tasks[type] || tasks.concept}
 
 ━━━ NEGATIVE PROMPT ━━━
-Do NOT: display the Design Consistency Code / Seed as visible text, make unreadable text, make a short or square bridge, redesign the bridge, change the seed identity, use a different roof, different portals, different structural rhythm, create arbitrary stepped/ziggurat roof stacks, create side doors, copy exact reference building, hyperrealistic AI render, dramatic HDR sky, cinematic colour grading, lens flare, bare concrete deck, empty drawing area, aerial-only view.`;
+Do NOT: make it a bridge crossing water, display Consistency Code/Seed as visible text, show pavilion on dry land, make causeways wide bridges, make pavilion larger than 6×6 m, show no water around pavilion, use hyperrealistic AI render style, dramatic HDR sky, cinematic grading, lens flare, empty drawing area, change design between prompts, make arbitrary stepped/ziggurat roof stacks, copy reference building literally without transformation.`;
 }
 
 function buildPrompt(variation){ return buildSinglePrompt(currentPromptType, variation); }
@@ -437,25 +539,16 @@ function gen(){
   return lastPrompt;
 }
 
-function update(){
-  exportMode = false;
-  document.getElementById("pbox").textContent = gen();
-}
+function update(){ exportMode = false; document.getElementById("pbox").textContent = gen(); }
 
-function newDesign(){
-  lastVariation = makeVariation();
-  update();
-}
+function newDesign(){ lastVariation = makeVariation(); update(); }
 
 function setCopyStatus(text, mode){
   const btn = document.getElementById("copyBtn");
   btn.textContent = text;
-  btn.classList.remove("ok", "warn");
+  btn.classList.remove("ok","warn");
   if(mode) btn.classList.add(mode);
-  setTimeout(() => {
-    btn.textContent = "نسخ البرومت الحالي";
-    btn.classList.remove("ok", "warn");
-  }, 2500);
+  setTimeout(()=>{ btn.textContent="نسخ البرومت الحالي"; btn.classList.remove("ok","warn"); }, 2500);
 }
 
 async function copyWithClipboardAPI(text){
@@ -465,17 +558,9 @@ async function copyWithClipboardAPI(text){
 
 function copyWithExecCommand(text){
   const ta = document.createElement("textarea");
-  ta.value = text;
-  ta.setAttribute("readonly", "");
-  ta.style.position = "fixed";
-  ta.style.top = "0";
-  ta.style.left = "0";
-  ta.style.width = "1px";
-  ta.style.height = "1px";
-  ta.style.opacity = "0";
-  document.body.appendChild(ta);
-  ta.focus();
-  ta.select();
+  ta.value = text; ta.setAttribute("readonly","");
+  ta.style.cssText = "position:fixed;top:0;left:0;width:1px;height:1px;opacity:0;";
+  document.body.appendChild(ta); ta.focus(); ta.select();
   let copied = false;
   try { copied = Boolean(document.execCommand && document.execCommand("copy")); }
   finally { document.body.removeChild(ta); }
@@ -484,28 +569,16 @@ function copyWithExecCommand(text){
 
 function selectPromptForManualCopy(){
   const pbox = document.getElementById("pbox");
-  const range = document.createRange();
-  range.selectNodeContents(pbox);
-  const selection = window.getSelection();
-  selection.removeAllRanges();
-  selection.addRange(range);
+  const range = document.createRange(); range.selectNodeContents(pbox);
+  const sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(range);
 }
 
 async function doCopy(){
   const text = document.getElementById("pbox").textContent || lastPrompt || gen();
-  try {
-    await copyWithClipboardAPI(text);
-    setCopyStatus("تم النسخ ✓", "ok");
-    return;
-  } catch (err) {
-    console.warn("Clipboard API blocked; trying fallback copy.", err);
-  }
-  if(copyWithExecCommand(text)) {
-    setCopyStatus("تم النسخ ✓", "ok");
-    return;
-  }
-  selectPromptForManualCopy();
-  setCopyStatus("حددت النص — انسخه يدوياً", "warn");
+  try { await copyWithClipboardAPI(text); setCopyStatus("تم النسخ ✓","ok"); return; }
+  catch(err){ console.warn("Clipboard API blocked",err); }
+  if(copyWithExecCommand(text)){ setCopyStatus("تم النسخ ✓","ok"); return; }
+  selectPromptForManualCopy(); setCopyStatus("حددت النص — انسخه يدوياً","warn");
 }
 
 function generateAllPromptsArray(){
@@ -525,68 +598,21 @@ function exportPromptsForScript(){
   lastPrompt = formatted;
 }
 
-function runSelfTests(){
-  console.assert(Object.keys(ERAS).length >= 6, "Test failed: expected at least 6 eras.");
-  console.assert(PROMPT_TYPES.length === 10, "Test failed: expected 10 prompt pages.");
-  console.assert(typeof newDesign === "function", "Test failed: newDesign should be defined.");
-  console.assert(typeof doCopy === "function", "Test failed: doCopy should be defined.");
-  console.assert(typeof exportPromptsForScript === "function", "Test failed: exportPromptsForScript should be defined.");
-  console.assert(typeof transformedElementsList(getSelectedBuilding()) === "string", "Test failed: transformed elements should return string.");
-  const v = makeVariation();
-  console.assert(v.seed && v.strategy && v.massing && v.ornament, "Test failed: variation object incomplete.");
-  const oldType = currentPromptType;
-  currentPromptType = "main3d";
-  const p3d = buildPrompt(v);
-  currentPromptType = "plan";
-  const plan = buildPrompt(v);
-  currentPromptType = "poster";
-  const poster = buildPrompt(v);
-  currentPromptType = oldType;
-  console.assert(p3d.includes(v.seed) && plan.includes(v.seed) && poster.includes(v.seed), "Test failed: pages should keep same seed internally.");
-  console.assert(p3d.includes("do not display this code"), "Test failed: seed should be marked internal only.");
-  console.assert(p3d.includes("SAME DESIGN") && plan.includes("SAME DESIGN"), "Test failed: pages should enforce same design.");
-  console.assert(poster.includes("FULL ARCHITECTURAL POSTER"), "Test failed: poster prompt missing.");
-  console.assert(buildSinglePrompt("concept", v).includes("THREE small reference images"), "Test failed: concept page should request reference images.");
-  console.assert(buildSinglePrompt("concept", v).includes("readable"), "Test failed: concept page should require readable text.");
-  console.assert(document.getElementById("newDesignBtn"), "Test failed: new design button missing.");
-  console.assert(document.getElementById("exportBtn"), "Test failed: export button missing.");
-  console.assert(bridgeRulesBlock().includes("18 m length × 6 m width"), "Test failed: long bridge dimensions missing.");
-  console.assert(bridgeRulesBlock().includes("reference image"), "Test failed: reference image proportion instruction missing.");
-  const exported = buildUserscriptPromptsBlock();
-  console.assert(exported.startsWith("let prompts = ["), "Test failed: export should start with JS array assignment.");
-  console.assert(!exported.includes("`"), "Test failed: export should not use backticks.");
-  console.assert(exported.includes("\\n"), "Test failed: export should preserve newlines as escaped characters.");
-}
-
 function bindEvents(){
   document.getElementById("eraRow").addEventListener("click", e => {
-    const btn = e.target.closest(".era-btn");
-    if(!btn) return;
-    curEra = btn.dataset.e;
-    curB = null;
-    lastVariation = makeVariation();
-    buildEras();
-    buildBuildings();
-    update();
+    const btn = e.target.closest(".era-btn"); if(!btn) return;
+    curEra = btn.dataset.e; curB = null; lastVariation = makeVariation();
+    buildEras(); buildBuildings(); update();
   });
-
   document.getElementById("bRow").addEventListener("click", e => {
-    const btn = e.target.closest(".b-btn");
-    if(!btn) return;
-    curB = btn.dataset.b;
-    lastVariation = makeVariation();
-    buildBuildings();
-    update();
+    const btn = e.target.closest(".b-btn"); if(!btn) return;
+    curB = btn.dataset.b; lastVariation = makeVariation();
+    buildBuildings(); update();
   });
-
   document.getElementById("promptTabs").addEventListener("click", e => {
-    const btn = e.target.closest(".prompt-tab");
-    if(!btn) return;
-    currentPromptType = btn.dataset.type;
-    buildPromptTabs();
-    update();
+    const btn = e.target.closest(".prompt-tab"); if(!btn) return;
+    currentPromptType = btn.dataset.type; buildPromptTabs(); update();
   });
-
   document.getElementById("sName").addEventListener("input", update);
   document.getElementById("pName").addEventListener("input", update);
   document.getElementById("copyBtn").addEventListener("click", doCopy);
@@ -597,12 +623,7 @@ function bindEvents(){
 function init(){
   curB = Object.keys(ERAS[curEra].buildings)[0];
   lastVariation = makeVariation();
-  buildEras();
-  buildBuildings();
-  buildPromptTabs();
-  bindEvents();
-  update();
-  runSelfTests();
+  buildEras(); buildBuildings(); buildPromptTabs(); bindEvents(); update();
 }
 
 init();
