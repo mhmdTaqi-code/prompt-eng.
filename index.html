@@ -59,6 +59,7 @@ button { font-family: inherit; }
 <div class="action-row">
   <button class="cbtn" id="copyBtn" type="button">نسخ البرومت الحالي</button>
   <button class="secondary-btn" id="newDesignBtn" type="button">تصميم جديد / Seed جديد</button>
+  <button class="secondary-btn" id="exportBtn" type="button">Export Prompts (For Loop)</button>
 </div>
 <div class="helper" id="copyHelp">إذا منع المتصفح النسخ التلقائي، سيتم تحديد النص حتى تنسخه يدوياً.</div>
 
@@ -102,6 +103,7 @@ let curB = null;
 let lastPrompt = "";
 let lastVariation = null;
 let currentPromptType = "concept";
+let exportMode = false;
 
 const PROMPT_TYPES = [
   { id: "concept", label: "Concept / الفكرة" },
@@ -130,12 +132,7 @@ function makeVariationSeed(){
 }
 
 function makeVariation(){
-  return {
-    seed: makeVariationSeed(),
-    strategy: pickRandom(DESIGN_STRATEGIES),
-    massing: pickRandom(MASSING_VARIATIONS),
-    ornament: pickRandom(ORNAMENT_VARIATIONS)
-  };
+  return { seed: makeVariationSeed(), strategy: pickRandom(DESIGN_STRATEGIES), massing: pickRandom(MASSING_VARIATIONS), ornament: pickRandom(ORNAMENT_VARIATIONS) };
 }
 
 function getSelectedBuilding(){ return ERAS[curEra].buildings[curB]; }
@@ -440,7 +437,10 @@ function gen(){
   return lastPrompt;
 }
 
-function update(){ document.getElementById("pbox").textContent = gen(); }
+function update(){
+  exportMode = false;
+  document.getElementById("pbox").textContent = gen();
+}
 
 function newDesign(){
   lastVariation = makeVariation();
@@ -492,7 +492,7 @@ function selectPromptForManualCopy(){
 }
 
 async function doCopy(){
-  const text = lastPrompt || document.getElementById("pbox").textContent || gen();
+  const text = document.getElementById("pbox").textContent || lastPrompt || gen();
   try {
     await copyWithClipboardAPI(text);
     setCopyStatus("تم النسخ ✓", "ok");
@@ -508,11 +508,29 @@ async function doCopy(){
   setCopyStatus("حددت النص — انسخه يدوياً", "warn");
 }
 
+function generateAllPromptsArray(){
+  if(!lastVariation) lastVariation = makeVariation();
+  return PROMPT_TYPES.map(t => buildSinglePrompt(t.id, lastVariation));
+}
+
+function buildUserscriptPromptsBlock(){
+  const arr = generateAllPromptsArray();
+  return "let prompts = " + JSON.stringify(arr, null, 2) + ";";
+}
+
+function exportPromptsForScript(){
+  exportMode = true;
+  const formatted = buildUserscriptPromptsBlock();
+  document.getElementById("pbox").textContent = formatted;
+  lastPrompt = formatted;
+}
+
 function runSelfTests(){
   console.assert(Object.keys(ERAS).length >= 6, "Test failed: expected at least 6 eras.");
   console.assert(PROMPT_TYPES.length === 10, "Test failed: expected 10 prompt pages.");
   console.assert(typeof newDesign === "function", "Test failed: newDesign should be defined.");
   console.assert(typeof doCopy === "function", "Test failed: doCopy should be defined.");
+  console.assert(typeof exportPromptsForScript === "function", "Test failed: exportPromptsForScript should be defined.");
   console.assert(typeof transformedElementsList(getSelectedBuilding()) === "string", "Test failed: transformed elements should return string.");
   const v = makeVariation();
   console.assert(v.seed && v.strategy && v.massing && v.ornament, "Test failed: variation object incomplete.");
@@ -531,8 +549,13 @@ function runSelfTests(){
   console.assert(buildSinglePrompt("concept", v).includes("THREE small reference images"), "Test failed: concept page should request reference images.");
   console.assert(buildSinglePrompt("concept", v).includes("readable"), "Test failed: concept page should require readable text.");
   console.assert(document.getElementById("newDesignBtn"), "Test failed: new design button missing.");
+  console.assert(document.getElementById("exportBtn"), "Test failed: export button missing.");
   console.assert(bridgeRulesBlock().includes("18 m length × 6 m width"), "Test failed: long bridge dimensions missing.");
   console.assert(bridgeRulesBlock().includes("reference image"), "Test failed: reference image proportion instruction missing.");
+  const exported = buildUserscriptPromptsBlock();
+  console.assert(exported.startsWith("let prompts = ["), "Test failed: export should start with JS array assignment.");
+  console.assert(!exported.includes("`"), "Test failed: export should not use backticks.");
+  console.assert(exported.includes("\\n"), "Test failed: export should preserve newlines as escaped characters.");
 }
 
 function bindEvents(){
@@ -568,6 +591,7 @@ function bindEvents(){
   document.getElementById("pName").addEventListener("input", update);
   document.getElementById("copyBtn").addEventListener("click", doCopy);
   document.getElementById("newDesignBtn").addEventListener("click", newDesign);
+  document.getElementById("exportBtn").addEventListener("click", exportPromptsForScript);
 }
 
 function init(){
