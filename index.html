@@ -220,11 +220,18 @@ function bridgeRulesBlock(){
   return `━━━ FIXED BRIDGE RULES — LONG BRIDGE LIKE THE REFERENCE IMAGE ━━━
 • IMPORTANT: The bridge must be LONG and RECTANGULAR like the provided reference image, not a compact square pavilion.
 • Overall bridge footprint: 18 m length × 6 m width, elongated 3:1 proportion.
+• VERY IMPORTANT FOR DRAWINGS:
+  - Front view must always represent the SHORT side (6 m).
+  - Side view must always represent the LONG side (18 m).
+  - Do not confuse them or duplicate the same elevation twice.
 • Canal width: 8 m | Clear bridge span over water: 14–16 m | Total architectural length: 18 m.
 • Deck height above water: 0.8 m max.
 • TWO open entry portals, one at each short end of the long bridge (FRONT faces of the bridge).
 • IMPORTANT: The main entrances must be clearly visible on the front facades (short sides), not hidden only on the long side.
-• Side openings are allowed, but NEVER replace the front entrances — front portals are mandatory.
+• ALL main doors must be located on the FRONT facades (short sides) only.
+• Side facades (long sides) must NOT contain doors — only openings, arches, or windows.
+• The design must clearly read as entering from the front and exiting from the opposite front.
+• Side openings are allowed ONLY as visual or structural rhythm (arcades, windows), not as entrances.
 • The bridge can be composed using any structural logic (arches, frames, vaults, ribs, or hybrid systems) depending on the design — repetition is optional, not required.
 • Architectural frame covers 100% of bridge length — no bare concrete.
 • The design should read as a long covered pedestrian bridge crossing the canal, but the architectural language (rhythm, structure, form) is flexible and driven by the concept.
@@ -271,6 +278,9 @@ ROW 2:
 [Col 1 — 28%] Detailed 1:50 plan, 18m × 6m elongated bridge, grid, north arrow, scale bar, zones.
 [Col 2 — 38%] Exploded axonometric with base, deck, structural frame, roof/ceiling, parapet/crowning.
 [Col 3 — 34%] Front elevation and side elevation of the SAME design.
+IMPORTANT:
+• FRONT ELEVATION = short facade (6.00 m width) showing the main entrance portal.
+• SIDE ELEVATION = long facade (18.00 m length) showing the repeated bays along the bridge.
 
 ROW 3:
 [Col 1 — 28%] Roof plan of the SAME roof system.
@@ -383,9 +393,9 @@ Add grid lines A–B / 1–2–3, north arrow, scale bar 0–5m, dimension lines
 The plan must match the same 3D design identity and massing: ${variation.massing}.`,
     elevations: `━━━ TASK: FRONT + SIDE ELEVATIONS ━━━
 Create one sheet with two pencil-sketch elevations of the SAME bridge design.
-TOP: FRONT ELEVATION, length 18.00m, show open entry portal, total height, deck 0.80m above water, human figure 1.70m, dashed waterline.
-BOTTOM: SIDE ELEVATION, width 6.00m, show arch below deck, roof/ceiling profile, parapet, structural rhythm.
-Do not invent a new facade; match EXACTLY the same portal positions (front entrances), roof profile, and ornament logic: ${variation.ornament}.`,
+TOP: FRONT ELEVATION, width 6.00 m (SHORT SIDE), show main entrance portal clearly, total height, deck 0.80m above water, human figure 1.70m, dashed waterline. This must look compact and vertical, not elongated.
+BOTTOM: SIDE ELEVATION, length 18.00 m (LONG SIDE), show full repeated bays along the bridge, arch below deck, roof/ceiling profile, parapet, structural rhythm. This must be the elongated facade.
+Do not invent a new facade; match EXACTLY the same portal positions (front-only entrances), roof profile, and ornament logic: ${variation.ornament}.`,
     sections: `━━━ TASK: LONGITUDINAL + CROSS SECTIONS ━━━
 Create one sheet with two pencil-sketch sections of the SAME bridge design.
 LEFT: Longitudinal section along 18m axis, canal water below arch, full span, internal height, portals at both ends, human figure, dimensions.
@@ -419,7 +429,7 @@ Show how each historical element was transformed into the bridge, not copied lit
 ${tasks[type] || tasks.concept}
 
 ━━━ NEGATIVE PROMPT ━━━
-Do NOT: display the Design Consistency Code / Seed as visible text, make unreadable text, make a short or square bridge, redesign the bridge, change the seed identity, use a different roof, different portals, different structural rhythm, create arbitrary stepped/ziggurat roof stacks, copy exact reference building, hyperrealistic AI render, dramatic HDR sky, cinematic colour grading, lens flare, bare concrete deck, empty drawing area, aerial-only view.`;
+Do NOT: display the Design Consistency Code / Seed as visible text, make unreadable text, make a short or square bridge, redesign the bridge, change the seed identity, use a different roof, different portals, different structural rhythm, create arbitrary stepped/ziggurat roof stacks, create side doors, copy exact reference building, hyperrealistic AI render, dramatic HDR sky, cinematic colour grading, lens flare, bare concrete deck, empty drawing area, aerial-only view.`;
 }
 
 function buildPrompt(variation){ return buildSinglePrompt(currentPromptType, variation); }
