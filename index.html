@@ -1,0 +1,279 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; padding: 1rem 0; background: transparent; color: var(--color-text-primary, #1a1a1a); }
+.era-tabs { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 10px; }
+.era-btn { padding: 5px 11px; border: 0.5px solid #ccc; border-radius: 8px; background: var(--color-background-primary, #fff); color: var(--color-text-primary, #222); cursor: pointer; font-size: 11px; }
+.era-btn.on { background: #EEEDFE; border-color: #7F77DD; color: #3C3489; font-weight: 600; }
+.building-grid { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px; }
+.b-btn { padding: 5px 10px; border: 0.5px solid #ddd; border-radius: 6px; background: var(--color-background-primary, #fff); color: var(--color-text-secondary, #555); cursor: pointer; font-size: 11px; }
+.b-btn.on { background: #FFF3E0; border-color: #E07B00; color: #7a3d00; font-weight: 600; }
+.lbl { font-size: 10.5px; color: var(--color-text-secondary, #888); margin-bottom: 5px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; }
+.inputs input { width: 100%; margin-bottom: 6px; padding: 7px 10px; font-size: 12px; border: 0.5px solid #ddd; border-radius: 8px; background: var(--color-background-primary, #fff); color: var(--color-text-primary, #222); }
+.pbox { background: var(--color-background-secondary, #f7f7f7); border: 0.5px solid #ddd; border-radius: 10px; padding: 1.1rem; font-size: 11.5px; line-height: 1.9; white-space: pre-wrap; word-break: break-word; max-height: 500px; overflow-y: auto; color: var(--color-text-primary, #222); }
+.cbtn { margin-top: 10px; padding: 9px 24px; background: #534AB7; color: #fff; border: none; border-radius: 8px; cursor: pointer; font-size: 13px; font-weight: 600; }
+.cbtn:hover { background: #3C3489; }
+.sec { margin-bottom: 14px; }
+.tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 10px; font-weight: 600; margin-left: 6px; background: #E8F5E9; color: #2E7D32; border: 0.5px solid #A5D6A7; }
+</style>
+</head>
+<body>
+
+<div class="sec">
+  <div class="lbl">العصر المعماري</div>
+  <div class="era-tabs" id="eraRow"></div>
+</div>
+<div class="sec">
+  <div class="lbl">اختر المبنى</div>
+  <div class="building-grid" id="bRow"></div>
+</div>
+<div class="sec inputs">
+  <div class="lbl">اسم الطالب واسم المشروع</div>
+  <input id="sName" placeholder="Student Name — الاسم الكامل" />
+  <input id="pName" placeholder="اسم المشروع — Project Title" />
+</div>
+<div class="lbl">البرومت الكامل <span class="tag">رندر هادئ + سكتش قلم رصاص</span></div>
+<div class="pbox" id="pbox">اختر العصر والمبنى...</div>
+<button class="cbtn" onclick="doCopy()">نسخ البرومت الكامل</button>
+
+<script>
+const ERAS = {
+  "مسيحي مبكر": { buildings: {
+    "سانتا كوستانزا": { en:"Baptistery of Santa Costanza", loc:"Rome, Italy", date:"340 AD", style:"Early Christian", pal:"warm brick red, white marble, gold mosaic, grey granite", mood:"intimate sacred centrality, early Christian simplicity", ref:"Santa Costanza Rome, Pantheon", desc:`The Baptistery of Santa Costanza in Rome was built around 340 AD as a mausoleum for Constantina, daughter of Emperor Constantine. Circular in plan with a central drum supporting a low dome, surrounded by a continuous barrel-vaulted ambulatory carried on 12 pairs of granite columns. The ambulatory ceiling preserves the oldest surviving Christian mosaics in Rome — geometric patterns, vintage harvest scenes, and portraits from the 4th century. The building was later converted into a baptistery and then a church. Its central-plan circular form was highly influential on later Christian and Byzantine architecture. The plain brick exterior contrasts dramatically with the richly decorated interior.`, adds:"Conversion to baptistery then church, 18th-century narthex, mosaic restorations",
+    elements:[{n:"Circular Drum",na:"الطبل الدائري",t:"Structural",f:"Cylindrical wall supporting dome"},{n:"Low Dome",na:"القبة المنبسطة",t:"Structural",f:"Shallow masonry dome over central space"},{n:"Barrel-Vaulted Ambulatory",na:"الممر المقبو",t:"Structural/Spatial",f:"Ring corridor with barrel vault — processional circulation"},{n:"Paired Granite Columns",na:"الأعمدة المزدوجة",t:"Structural",f:"12 pairs supporting ambulatory vault"},{n:"4th-Century Mosaics",na:"الفسيفساء المبكرة",t:"Ornamental",f:"Oldest Christian mosaics in Rome"},{n:"Central Unobstructed Space",na:"الفضاء المركزي",t:"Spatial",f:"Circular focal ceremonial area under dome"},{n:"Narthex Entry",na:"البهو المدخلي",t:"Spatial",f:"Entrance vestibule — transition from outside to sacred interior"}]},
+    "سان أبولينير": { en:"Basilica of S. Apollinare in Classe", loc:"Ravenna, Italy", date:"533-549 AD", style:"Early Christian Basilica", pal:"warm brick, white marble, gold and green mosaic, terracotta", mood:"directional sacred procession, luminous simplicity", ref:"Sant'Apollinare in Classe, Old St Peter's", desc:`The Basilica of Sant'Apollinare in Classe near Ravenna is one of the most important Early Christian basilicas in the world, built between 533 and 549 AD. It follows the classic basilican plan: a wide nave flanked by two side aisles separated by 24 marble columns, terminating in a semicircular apse containing extraordinary 6th-century Byzantine mosaics. The apse depicts Sant'Apollinare among 12 lambs in a symbolic green paradise landscape. The exterior features a distinctive cylindrical campanile from the 9th-10th century. The building was partially stripped of materials during medieval periods. The contrast between the plain exterior and richly decorated apse interior is characteristic of Early Christian architecture.`, adds:"9th-10th century campanile, medieval stripping of nave columns, mosaic restorations, 20th century structural consolidation",
+    elements:[{n:"Wide Basilican Nave",na:"الرواق الرئيسي",t:"Spatial",f:"Central nave — main congregational space"},{n:"Marble Column Arcade",na:"صفوف الأعمدة",t:"Structural",f:"24 marble columns separating nave from aisles"},{n:"Semicircular Apse",na:"الحنية نصف الدائرية",t:"Spatial/Structural",f:"Focal liturgical space"},{n:"Byzantine Apse Mosaic",na:"فسيفساء الحنية",t:"Ornamental",f:"6th century symbolic landscape mosaic"},{n:"Clerestory Windows",na:"نوافذ الكليريستوري",t:"Spatial",f:"Upper windows flooding nave with light"},{n:"Cylindrical Campanile",na:"برج الجرس الأسطواني",t:"Architectural",f:"9th-century round bell tower"},{n:"Side Aisles",na:"الأجنحة الجانبية",t:"Spatial",f:"Flanking circulation and gathering spaces"}]},
+    "كنيسة المهد": { en:"Church of the Nativity", loc:"Bethlehem, Palestine", date:"325 AD", style:"Early Christian Basilica", pal:"warm limestone, gold mosaic, ochre, deep red brick", mood:"ancient sacred permanence, humble devotional", ref:"Church of Nativity, Old St Peter's", desc:`The Church of the Nativity in Bethlehem is one of the oldest continuously operating churches in the world, originally built around 325 AD under Emperor Constantine over the grotto traditionally identified as the birthplace of Jesus Christ. Rebuilt between 527–565 AD under Justinian into its current form: a five-aisled basilica 53.9m long with 44 monolithic limestone columns. The entrance was reduced to a tiny 'Door of Humility' during the Crusader period. The church preserves fragments of the original 4th-century mosaic floor visible through trapdoors. Crusader-era mosaics survive on the upper nave walls. The grotto beneath the chancel marked by a 14-pointed silver star is the most sacred space.`, adds:"Justinian rebuilding 565 AD, Crusader mosaics 12th c., Door of Humility, multiple denominations, UNESCO 2012",
+    elements:[{n:"Five-Aisled Basilica Plan",na:"المسقط ذو الخمسة أروقة",t:"Spatial",f:"Wide 5-aisled plan accommodating multiple denominations"},{n:"Monolithic Limestone Columns",na:"الأعمدة الحجرية",t:"Structural",f:"44 single-piece columns defining aisles"},{n:"Grotto Crypt",na:"الكهف المقدس",t:"Spatial",f:"Underground sacred focal point"},{n:"Door of Humility",na:"باب التواضع",t:"Architectural",f:"Tiny low entry forcing all to bow"},{n:"Crusader Wall Mosaics",na:"فسيفساء الحروب الصليبية",t:"Ornamental",f:"12th-century narrative mosaics"},{n:"Octagonal Chancel",na:"القسم الثماني",t:"Spatial/Structural",f:"Sanctuary over grotto"},{n:"Trapdoor Floor Mosaics",na:"فسيفساء الأرضية",t:"Ornamental",f:"4th-century Constantinian mosaic floor preserved below"}]}
+  }},
+  "بيزنطي": { buildings: {
+    "آيا صوفيا": { en:"Hagia Sophia", loc:"Istanbul, Turkey", date:"532-537 AD", style:"Byzantine", pal:"gold, deep crimson, purple, white marble, cobalt mosaic", mood:"otherworldly radiance, sacred geometry", ref:"Hagia Sophia, San Vitale, Chora Church", desc:`Hagia Sophia in Istanbul, built 532–537 AD under Emperor Justinian I by architects Anthemius of Tralles and Isidorus of Miletus, is one of the greatest architectural achievements in history. Its revolutionary feature is the 31.87m central dome resting on four pendentives — allowing a circular dome on a square base — sitting 55.6m above the floor. The interior is clad in polychrome marble and gold Byzantine mosaics. The Ottomans converted it to a mosque in 1453, adding minarets and covering mosaics. Converted to a museum by Atatürk in 1934, then back to an active mosque in 2020.`, adds:"4 Ottoman minarets, calligraphy medallions, mihrab and minbar, 2020 mosque reconversion",
+    elements:[{n:"Pendentive",na:"الثوب الركني",t:"Structural",f:"Transitions square base to circular dome"},{n:"Central Dome",na:"القبة المركزية",t:"Structural/Spatial",f:"31.87m hemisphere — main space"},{n:"Half-Dome",na:"القبة النصفية",t:"Structural",f:"Buttresses main dome, extends volume"},{n:"Polychrome Marble Revetment",na:"كسوة الرخام الملون",t:"Ornamental",f:"Multi-coloured marble panels on all walls"},{n:"Gold Mosaic",na:"الفسيفساء الذهبية",t:"Ornamental",f:"Tessera mosaics — luminous shimmer"},{n:"Clerestory Windows",na:"نوافذ الكليريستوري",t:"Spatial",f:"40 windows at dome base — floating dome illusion"},{n:"Column Arcade Gallery",na:"صفوف الأعمدة",t:"Structural/Spatial",f:"Double arcade defining nave and aisles"}]},
+    "سان فيتالي": { en:"San Vitale", loc:"Ravenna, Italy", date:"547 AD", style:"Byzantine", pal:"gold, Byzantine purple, deep green, white marble, warm brick", mood:"imperial sacred splendour, rich ornamental surfaces", ref:"San Vitale, Hagia Sophia, Hosios Loukas", desc:`San Vitale in Ravenna, completed 547 AD, is the most important surviving example of early Byzantine art and architecture outside Constantinople. The church has an octagonal plan — an octagonal outer shell contains an octagonal inner core of piers supporting a dome, with seven semicircular exedrae radiating outward. The chancel contains the famous Byzantine mosaics depicting Emperor Justinian and Empress Theodora — the only contemporary portraits of these rulers. The exterior is plain brick; the contrast with the richly decorated interior is dramatic.`, adds:"Later frescoes over mosaics, 16th-century dome modifications, 18th-century floor replacement, ongoing mosaic conservation",
+    elements:[{n:"Octagonal Plan",na:"المسقط الثماني",t:"Spatial/Structural",f:"Double octagon — complex interlocking spatial experience"},{n:"Semicircular Exedrae",na:"الحنايا نصف الدائرية",t:"Spatial",f:"7 radiating apses expanding space laterally"},{n:"Byzantine Imperial Mosaics",na:"الفسيفساء الإمبراطورية",t:"Ornamental",f:"Justinian and Theodora panels"},{n:"Dome on Octagonal Piers",na:"القبة على الدعائم",t:"Structural",f:"Dome on 8 hollow pottery-tube piers"},{n:"Narthex",na:"الرواق المدخلي",t:"Spatial",f:"Entrance vestibule — transition space"},{n:"Byzantine Impost Capitals",na:"تيجان الأعمدة البيزنطية",t:"Structural/Ornamental",f:"Undercut acanthus capitals — refined stone carving"},{n:"Gold Ground Vault Mosaic",na:"قباب الفسيفساء الذهبية",t:"Ornamental",f:"Gold-ground mosaics covering all vaults"}]}
+  }},
+  "رومانسكي": { buildings: {
+    "كاتدرائية بيزا": { en:"Duomo Cathedral of Pisa", loc:"Pisa, Italy", date:"1092 AD", style:"Romanesque", pal:"white and dark green marble, warm terracotta, grey stone", mood:"monumental civic pride, rhythmic layered facades", ref:"Duomo Pisa, Monreale, San Miniato", desc:`The Cathedral of Pisa begun in 1063, consecrated 1118, is one of the finest Romanesque buildings in the world. A five-aisled Latin cross basilica 84.7m long with a distinctive Pisan Romanesque facade: alternating bands of white and dark grey-green marble with four tiers of open colonnaded loggias. The unusual elliptical dome marks the crossing. The interior features columns salvaged from ancient Roman ruins. Part of the Campo dei Miracoli ensemble with the Baptistery and Leaning Tower.`, adds:"Elliptical dome added 13th c., ensemble built 12th–14th c., fire 1595 restored with Baroque elements, UNESCO 1987",
+    elements:[{n:"Striped Marble Banding",na:"الشرائط الرخامية",t:"Ornamental/Architectural",f:"Alternating white and dark green marble"},{n:"Open Loggia Galleries",na:"شرفات الأروقة",t:"Architectural/Spatial",f:"4 tiers of colonnaded galleries on facade"},{n:"Five-Aisled Nave",na:"الصحن ذو الخمسة أروقة",t:"Spatial",f:"Wide 5-aisled plan with salvaged ancient columns"},{n:"Elliptical Dome",na:"القبة الإهليلجية",t:"Structural/Spatial",f:"Unusual oval dome over crossing"},{n:"Latin Cross Plan",na:"المسقط الصليبي",t:"Spatial",f:"Traditional Latin cross plan"},{n:"Blind Arcading",na:"الأقواس العمياء",t:"Ornamental",f:"Decorative arcades on exterior walls"},{n:"Freestanding Campanile",na:"برج الجرس المنفصل",t:"Architectural",f:"Leaning tower — vertical landmark of ensemble"}]},
+    "كاتدرائية مونتريالي": { en:"Cathedral of Monreale", loc:"Sicily, Italy", date:"1172-1182 AD", style:"Norman-Romanesque", pal:"gold mosaic, warm limestone, white marble, terracotta, Byzantine blue-green", mood:"overwhelming ornamental richness, multicultural sacred splendour", ref:"Monreale, Palatine Chapel Palermo, Cefalù", desc:`The Cathedral of Monreale near Palermo, built 1172–1182 under Norman King William II, exemplifies the multicultural fusion of Norman, Byzantine, and Arab traditions. The interior contains over 6,340 square metres of gold-ground Byzantine mosaics covering every wall and vault, depicting the complete biblical narrative. The exterior combines Norman stone with Arab-style intersecting pointed arches on the apse. The adjacent cloister features 228 uniquely carved column pairs surrounding a central garden.`, adds:"Cloister added late 12th c., bell towers 16th–18th c., mosaic restorations, 18th-c. chapel additions, UNESCO 2015",
+    elements:[{n:"Full-Coverage Byzantine Mosaic",na:"الفسيفساء البيزنطية الكاملة",t:"Ornamental",f:"6340 sqm gold-ground mosaics — complete biblical narrative"},{n:"Christ Pantocrator Apse",na:"حنية المسيح",t:"Ornamental/Spatial",f:"Monumental mosaic of Christ — dominant focal point"},{n:"Norman-Arab Pointed Arches",na:"الأقواس المدببة",t:"Structural/Architectural",f:"Interlacing pointed arches — multicultural fusion"},{n:"228-Column Cloister",na:"الرواق ذو 228 عموداً",t:"Spatial",f:"Square cloister with carved column pairs"},{n:"Wide Three-Aisled Nave",na:"الصحن الثلاثي",t:"Spatial",f:"Wide basilican nave under gold mosaics"},{n:"Inlaid Column Shafts",na:"أعمدة التطعيم",t:"Ornamental/Structural",f:"Cloister columns inlaid with coloured marble"},{n:"Triple Apse Cluster",na:"مجموعة الحنايا",t:"Spatial/Structural",f:"Triple east-end apse — Norman-Arab exterior arcading"}]},
+    "كاتدرائية شباير": { en:"Speyer Cathedral", loc:"Speyer, Germany", date:"1024-1106 AD", style:"Romanesque", pal:"warm sandstone, grey stone, terracotta tile, deep red brick", mood:"imperial monumental Romanesque power", ref:"Speyer, Worms, Mainz Cathedrals", desc:`Speyer Cathedral, the largest Romanesque church in the world at 134m long, was begun in 1024 under Emperor Conrad II as the imperial burial place. It pioneered the groin vault over the main nave — a key structural innovation. The exterior features four towers, two domes, and the Rhineland dwarf gallery (decorative arcade below roofline). The crypt beneath contains tombs of eight German emperors. Partially destroyed by French troops in 1689 and rebuilt.`, adds:"Westwork rebuilt after 1689 destruction, 19th-c. restoration by Heinrich Hübsch, UNESCO 1981",
+    elements:[{n:"Groin Vault Nave",na:"قبو التقاطع",t:"Structural",f:"First major church with full groin-vaulted nave"},{n:"Rhineland Dwarf Gallery",na:"الشرفة القزمة الراينية",t:"Architectural/Ornamental",f:"Decorative arcade below roofline — Rhineland signature"},{n:"Four-Tower Westwork",na:"الواجهة ذات الأبراج",t:"Architectural",f:"Massive west facade with 4 towers"},{n:"Imperial Crypt",na:"السرداب الإمبراطوري",t:"Spatial",f:"Largest Romanesque crypt in Germany"},{n:"Alternating Nave Supports",na:"الدعائم المتناوبة",t:"Structural",f:"Alternating piers and columns — rhythmic bays"},{n:"Apse and Choir",na:"الحنية والجوقة",t:"Spatial",f:"Eastern apse with raised choir over crypt"},{n:"Lombard Blind Arcading",na:"الأقواس العمياء",t:"Ornamental",f:"Decorative arcades on tower surfaces"}]}
+  }},
+  "قوطي": { buildings: {
+    "نوتردام دو باري": { en:"Notre-Dame de Paris", loc:"Paris, France", date:"1160-1260 AD", style:"Gothic", pal:"cool grey limestone, cobalt and gold stained glass, white stone", mood:"soaring vertical spirituality, skeletal structural drama", ref:"Notre-Dame Paris, Amiens, Sainte-Chapelle", desc:`Notre-Dame de Paris, built 1160–1260, introduced key Gothic innovations: the flying buttress enabling thinner walls and larger windows, the pointed arch, and the ribbed vault. The west facade has two 69m towers, three sculpted portals, and a 13m rose window. Interior: 130m long, 35m high. The 2019 fire destroyed the 19th-century Viollet-le-Duc spire and much of the roof. Restoration completed December 2024.`, adds:"Flying buttresses reinforced 13th c., Viollet-le-Duc restoration 1844–1864, 2019 fire, 2020–2024 restoration",
+    elements:[{n:"Flying Buttress",na:"الدعامة الطائرة",t:"Structural",f:"External arch transferring roof thrust — allows thin walls and large windows"},{n:"Rose Window",na:"النافذة الوردية",t:"Spatial/Ornamental",f:"13m circular stained-glass window"},{n:"Pointed Arch",na:"القوس المدبب",t:"Structural",f:"Directs load vertically — enables greater height"},{n:"Ribbed Vault",na:"القبو الضلعي",t:"Structural",f:"Stone ribs concentrating loads to piers"},{n:"Clustered Pier",na:"العمود المركب",t:"Structural",f:"Bundle of thin shafts carrying vault loads"},{n:"Pinnacle",na:"البرج الصغير",t:"Structural/Ornamental",f:"Adds weight to buttress, decorative spire"},{n:"Tracery Screen",na:"شاشة التخريم الحجري",t:"Architectural/Ornamental",f:"Delicate stone lattice in window openings"}]},
+    "سانت شابيل": { en:"Sainte-Chapelle", loc:"Paris, France", date:"1242-1248 AD", style:"Rayonnant Gothic", pal:"deep cobalt blue, ruby red, gold, grey stone, rich jewel tones", mood:"transcendent coloured light, jewel-box sacred intensity", ref:"Sainte-Chapelle, King's College Cambridge, Bourges", desc:`Sainte-Chapelle, built 1242–1248 under King Louis IX, is the supreme achievement of Rayonnant Gothic. The upper chapel has walls almost entirely of glass — 15 stained-glass windows 15m high with 1,113 panels (75% original). The stone structure is reduced to minimum delicate piers between the windows, creating a lantern of coloured light. The lower chapel served palace servants; the upper served the royal court.`, adds:"Rose window replaced 15th c., Revolutionary damage, Viollet-le-Duc restoration 1840–1867, WWII glass removal and return",
+    elements:[{n:"Floor-to-Ceiling Stained Glass",na:"الزجاج الملون الكامل",t:"Spatial/Ornamental",f:"15m high windows — walls entirely of coloured glass"},{n:"Delicate Stone Piers",na:"الدعائم الحجرية الرفيعة",t:"Structural",f:"Minimum stone between glass — skeletal structure"},{n:"Ribbed Vault",na:"القبو الضلعي",t:"Structural",f:"Blue and gold ribbed ceiling"},{n:"Rose Window",na:"النافذة الوردية",t:"Spatial/Ornamental",f:"Large circular kaleidoscopic west window"},{n:"Two-Level Chapel",na:"الكنيسة المزدوجة",t:"Spatial",f:"Lower for servants, upper for royalty"},{n:"Holy Relic Setting",na:"إطار الذخيرة المقدسة",t:"Spatial",f:"Entire building as jewelled reliquary container"},{n:"Gold-Painted Stone Details",na:"التفاصيل المذهبة",t:"Ornamental",f:"Gilded and painted ribs — jewel-like interior"}]},
+    "كاتدرائية أميان": { en:"Amiens Cathedral", loc:"Amiens, France", date:"1220 AD", style:"High Gothic", pal:"cool grey limestone, cobalt blue glass, gold details, white stone", mood:"sublime vertical height, overwhelming Gothic ambition", ref:"Amiens, Notre-Dame Paris, Bourges", desc:`Amiens Cathedral, the largest Gothic cathedral in France by volume (200,000 cubic metres), begun 1220. The nave vaults at 42.3m — the highest Gothic nave in France. The west facade has three sculpted portals, a kings' gallery, rose window, and twin towers. The interior is defined by the three-storey elevation (arcade, triforium, clerestory). The carved choir stalls are among the finest medieval woodwork.`, adds:"Chapels added 14th c., 15th-c. rose window, WWI damage and restoration, UNESCO 1981",
+    elements:[{n:"Three-Storey Elevation",na:"الارتفاع الثلاثي",t:"Architectural/Spatial",f:"Arcade + triforium + clerestory — High Gothic interior"},{n:"West Facade Triple Portal",na:"الواجهة ذات الثلاثة أبواب",t:"Architectural/Ornamental",f:"3 sculpted tympana — theological programme in stone"},{n:"42.3m Nave Vault",na:"قبو الصحن",t:"Structural",f:"Highest Gothic nave vault in France"},{n:"Flying Buttress System",na:"نظام الدعامات الطائرة",t:"Structural",f:"Complex 2-tier buttresses enabling tall thin walls"},{n:"Triforium Gallery",na:"رواق الترايفوريوم",t:"Spatial/Architectural",f:"Middle level glazed gallery"},{n:"Labyrinth Floor",na:"متاهة الأرضية",t:"Ornamental/Spatial",f:"Medieval floor labyrinth — symbolic pilgrimage path"},{n:"Beau Dieu Trumeau",na:"تمثال المسيح الجميل",t:"Ornamental",f:"Gilded central portal statue"}]}
+  }},
+  "نهضة وباروك": { buildings: {
+    "تيمبيتو": { en:"Tempietto di San Pietro", loc:"Rome, Italy", date:"1502 AD", style:"High Renaissance", pal:"pietra serena grey, warm white limestone, pale gold dome", mood:"rational humanist harmony, mathematical proportion", ref:"Tempietto, Pantheon, Villa Rotonda", desc:`The Tempietto, designed by Donato Bramante in 1502, is the first monument of the High Renaissance. Despite its tiny scale (4.5m diameter, 7.3m high), it embodies perfect geometric harmony: 16 Doric columns forming a peristyle around a circular cella topped by a hemispherical dome on a drum. Circle within circle within circle. It served as Bramante's proof of concept leading to his design for St Peter's Basilica.`, adds:"Baroque balustrade on drum 17th c., planned circular courtyard never built, 18th–19th c. restorations",
+    elements:[{n:"Doric Peristyle",na:"الرواق الدوري",t:"Structural/Architectural",f:"16 Doric columns encircling cylinder"},{n:"Hemispherical Dome",na:"القبة نصف الكروية",t:"Structural/Symbolic",f:"Perfect hemisphere — geometric and celestial symbol"},{n:"Cylindrical Cella",na:"الخلية الأسطوانية",t:"Spatial/Structural",f:"Inner circular sacred room"},{n:"Circular Drum",na:"الطبل الدائري",t:"Structural",f:"Cylindrical dome base with windows"},{n:"Metope-Triglyph Frieze",na:"إفريز الميتوب",t:"Ornamental/Architectural",f:"Doric frieze above columns"},{n:"Balustrade",na:"الدرابزون",t:"Architectural",f:"Low railing marking wall-to-dome transition"},{n:"Stepped Base",na:"القاعدة المدرجة",t:"Structural/Architectural",f:"Three-step classical podium"}]},
+    "قبة فلورنسا": { en:"Dome of Florence Cathedral (Brunelleschi)", loc:"Florence, Italy", date:"1417-1434 AD", style:"Early Renaissance", pal:"warm terracotta brick, white marble ribs, green and pink marble below", mood:"triumphant engineering ambition, Renaissance civic pride", ref:"Florence Dome, Pantheon, St Peter's Rome", desc:`Brunelleschi's dome of Santa Maria del Fiore (1417–1436) is one of history's greatest engineering achievements. The octagonal double-shell dome spans 44.8m — larger than the Pantheon — and rises 91m at the lantern. Built without traditional timber centering using a herringbone brick pattern and tension rings of sandstone and iron chains. The inner and outer shells are connected by 8 primary stone ribs. Interior frescoed by Vasari 1572–1579.`, adds:"Lantern completed 1461, interior frescoes by Vasari 1572–1579, lightning strike 1601 repaired, ongoing exterior restoration",
+    elements:[{n:"Double-Shell Dome",na:"القبة ذات القشرتين",t:"Structural",f:"Inner and outer shell distributing loads"},{n:"8 Primary Stone Ribs",na:"الأضلاع الحجرية الثمانية",t:"Structural",f:"Main load-bearing skeleton of the dome"},{n:"Herringbone Brick Pattern",na:"نمط الطوب الحورة",t:"Structural",f:"Self-supporting brick pattern — no centering needed"},{n:"Tension Rings",na:"حلقات الشد",t:"Structural",f:"Stone and iron rings containing outward thrust"},{n:"Octagonal Drum",na:"الطبل الثماني",t:"Structural/Spatial",f:"Octagonal base with ocular windows"},{n:"Lantern",na:"الفانوس",t:"Structural/Architectural",f:"Seals dome oculus, adds compressive load, admits light"},{n:"Internal Walkway Gallery",na:"الممشى الداخلي",t:"Spatial",f:"Walkway between shells for maintenance and visitors"}]},
+    "سان كارلو": { en:"S. Carlo alle Quattro Fontane", loc:"Rome, Italy", date:"1638-1667 AD", style:"Baroque", pal:"white stucco, grey stone details, gold gilding, dramatic shadow", mood:"theatrical dynamic movement, intellectual geometric drama", ref:"San Carlo alle Quattro Fontane, Sant'Ivo alla Sapienza", desc:`San Carlino by Borromini (1638–1667) fits into a site barely larger than one pier of St Peter's yet achieves extraordinary spatial drama through an undulating oval plan with complex convex and concave curves. The white stucco interior has an oval dome coffered with octagons, hexagons, and crosses diminishing toward the lantern for forced perspective height. The undulating facade — convex and concave bays alternating on two levels — is a Baroque masterpiece.`, adds:"Facade completed posthumously, adjacent cloister, stucco restoration campaigns, owned by Spanish Trinitarian order",
+    elements:[{n:"Undulating Oval Plan",na:"المسقط البيضاوي المتموج",t:"Spatial/Structural",f:"Oval with convex-concave curves — dynamic flowing interior"},{n:"Coffered Oval Dome",na:"القبة البيضاوية المقعرة",t:"Structural/Ornamental",f:"Oval dome with geometric coffers — forced perspective height"},{n:"Convex-Concave Facade",na:"الواجهة المحدبة-المقعرة",t:"Architectural",f:"Alternating curved bays — Baroque rhythmic movement"},{n:"White Stucco Interior",na:"الداخلية من الجص الأبيض",t:"Ornamental/Spatial",f:"All-white unifying complex geometry"},{n:"Oval Lantern",na:"الفانوس البيضاوي",t:"Structural/Architectural",f:"Top light — crowns dome, dramatic vertical light shaft"},{n:"Hidden Cloister",na:"الفناء الداخلي المخفي",t:"Spatial",f:"Small oval-ended cloister — tranquil contrast"},{n:"Giant Order Pilasters",na:"الأعمدة اللاصقة الضخمة",t:"Architectural",f:"Full-height pilasters unifying two levels"}]}
+  }},
+  "قرن 19": { buildings: {
+    "قصر الكريستال": { en:"The Crystal Palace", loc:"Hyde Park, London, UK", date:"1851 AD", style:"Iron and Glass / 19th Century", pal:"cast iron grey, crystal clear glass, primary colour trim", mood:"industrial optimism, transparent lightness, modular machine-age beauty", ref:"Crystal Palace, Kew Gardens Palm House, Galerie des Machines", desc:`The Crystal Palace by Joseph Paxton (1851) was a revolutionary prefabricated iron and glass structure for the Great Exhibition. At 563m long, it enclosed 92,000 sqm assembled in just 17 weeks using 84,000 sqm of glass, 4,500 tonnes of iron, and standardised modular components. The barrel-vaulted transept accommodated existing elm trees. The entire building celebrated the structural frame as aesthetic. Relocated to Sydenham Hill after the exhibition, it burned down in 1936.`, adds:"Relocated and expanded 1852–1854, transept dome added, destroyed by fire 1936",
+    elements:[{n:"Prefabricated Cast Iron Frame",na:"الهيكل الحديدي المسبق الصنع",t:"Structural",f:"Standard columns and beams — rapid modular assembly"},{n:"Plate Glass Envelope",na:"غلاف الزجاج المسطح",t:"Structural/Spatial",f:"84,000 sqm glass panels — transparent enclosure"},{n:"Modular Bay System",na:"نظام الوحدات المتكررة",t:"Structural",f:"Standard 7.3m bay — prefabrication system"},{n:"Barrel-Vaulted Transept",na:"العبور ذو القبو البرميلي",t:"Structural/Spatial",f:"Tall arched transept — accommodates existing trees"},{n:"Multi-Level Galleries",na:"الشرفات متعددة الطوابق",t:"Spatial",f:"Internal gallery levels for display and viewing"},{n:"Ridge and Furrow Roof",na:"سقف الحافة والأخدود",t:"Structural",f:"Paxton's patented roof — channels rain, supports glass"},{n:"Exposed Structural Aesthetics",na:"جمالية الهيكل المكشوف",t:"Architectural",f:"Visible iron structure celebrated — machine-age honesty"}]},
+    "برج إيفل": { en:"La Tour Eiffel", loc:"Paris, France", date:"1889 AD", style:"Iron Engineering / 19th Century", pal:"iron brown-grey, sky blue background, gold accent lighting", mood:"machine-age sublime, engineering as beauty, industrial optimism", ref:"Eiffel Tower, Crystal Palace, Galerie des Machines", desc:`The Eiffel Tower, built by Gustave Eiffel's company for the 1889 World's Fair, used 18,038 prefabricated iron parts assembled by 300 workers in just over 2 years. At 330m it was the world's tallest structure for 41 years. The curved leg profile mathematically follows the line of thrust to minimise bending stresses from wind. Originally intended for demolition after 20 years, it was saved by its use as a radio transmission tower.`, adds:"Antenna extended multiple times, glass floor on first platform 2014, repainted every 7 years",
+    elements:[{n:"Lattice Iron Structure",na:"هيكل الحديد الشبكي",t:"Structural",f:"Open lattice minimising wind resistance"},{n:"Four Curved Legs",na:"الأرجل الأربعة المنحنية",t:"Structural",f:"Profile follows mathematical thrust line"},{n:"Three Public Platforms",na:"المنصات الثلاث",t:"Spatial",f:"Observation levels at 57m, 116m, 276m"},{n:"Prefabricated Iron Joints",na:"الوصلات الحديدية المسبقة",t:"Structural",f:"2.5 million rivets connecting 18,038 parts"},{n:"Square Base Arcade",na:"القوس الرباعي في القاعدة",t:"Architectural",f:"Decorative arches between legs — monumental gateway"},{n:"Open Lattice Transparency",na:"الشفافية الشبكية",t:"Spatial",f:"Skeletal structure dematerialised against sky"},{n:"Hydraulic Elevators",na:"المصاعد الهيدروليكية",t:"Functional",f:"Curved-path hydraulic lifts following leg curve"}]},
+    "جسر كولبروكديل": { en:"Coalbrookdale Iron Bridge", loc:"Shropshire, England, UK", date:"1779 AD", style:"Industrial / Early Iron Engineering", pal:"iron grey-black, warm sandstone abutments, river green-blue", mood:"pioneering industrial strength, bold engineering simplicity", ref:"Coalbrookdale Iron Bridge, Crystal Palace", desc:`The Iron Bridge at Coalbrookdale (completed 1781) was the world's first cast iron bridge, spanning 30.5m across the River Severn with a single semicircular arch of cast iron ribs. Designed by Thomas Farnolls Pritchard and built by Abraham Darby III using carpentry joinery techniques — dovetail joints — since welding technology didn't yet exist. It proved iron could replace stone and timber for major civil structures, opening the era of iron construction. UNESCO World Heritage as part of Ironbridge Gorge.`, adds:"Roadway lightened 1802, pedestrian-only since 1934, UNESCO 1986, major conservation 2018–2019",
+    elements:[{n:"Semicircular Cast Iron Arch",na:"القوس الحديدي نصف الدائري",t:"Structural",f:"Single 30.5m span — world's first major cast iron structure"},{n:"Interlocking Rib System",na:"نظام الأضلاع المتشابكة",t:"Structural",f:"5 parallel cast iron ribs with cross-members"},{n:"Carpentry Joinery in Iron",na:"التوصيلات النجارية بالحديد",t:"Structural",f:"Dovetail and wedge joints — traditional joints in new material"},{n:"Semicircular Spandrel Panels",na:"ألواح الجنانح",t:"Structural/Ornamental",f:"Circular panels filling arch spandrels"},{n:"Stone Abutments",na:"الركائز الحجرية",t:"Structural",f:"Massive stone bases carrying arch thrust"},{n:"Open Lattice Handrails",na:"الدرابزون الشبكي",t:"Architectural",f:"Decorative iron lattice railings"},{n:"Single-Span Composition",na:"البحر الوحيد",t:"Spatial",f:"One dramatic arch span — bold engineering statement"}]}
+  }}
+};
+
+let curEra = "مسيحي مبكر";
+let curB = null;
+
+function buildEras(){
+  const r = document.getElementById("eraRow");
+  r.innerHTML = "";
+  Object.keys(ERAS).forEach(k => {
+    const b = document.createElement("button");
+    b.className = "era-btn" + (k===curEra?" on":"");
+    b.textContent = k; b.dataset.e = k;
+    r.appendChild(b);
+  });
+}
+function buildBuildings(){
+  const r = document.getElementById("bRow");
+  r.innerHTML = "";
+  const keys = Object.keys(ERAS[curEra].buildings);
+  curB = keys[0];
+  keys.forEach((k,i)=>{
+    const b = document.createElement("button");
+    b.className = "b-btn"+(i===0?" on":"");
+    b.textContent = k; b.dataset.b = k;
+    r.appendChild(b);
+  });
+}
+
+function gen(){
+  if(!curB) return "";
+  const bd = ERAS[curEra].buildings[curB];
+  const sName = document.getElementById("sName").value.trim()||"Student Name";
+  const pName = document.getElementById("pName").value.trim()||(bd.en+" — Pavilion Bridge");
+  const eTable = bd.elements.map((e,i)=>
+    `  ${i+1}. ${e.na} / ${e.n} | ${e.t} | ${e.f}`).join("\n");
+
+  return `=== CHATGPT — ARCHITECTURAL POSTER PROMPT ===
+Create ONE 90×90 cm academic architectural poster, 300 DPI.
+
+━━━ PROJECT ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Student: ${sName}
+Project: ${pName}
+Reference Building: ${bd.en} — ${bd.loc} — ${bd.date}
+Style: ${bd.style}
+
+━━━ BRIDGE DIMENSIONS (fixed for all drawings) ━━━
+• Canal width: 8 m | Bridge span: 10 m | Deck width: 6 m
+• Deck height above water: 0.8 m max | TWO open entry portals
+• Architectural frame covers 100% of bridge length — no bare concrete
+
+━━━ RENDERING STYLE — READ CAREFULLY ━━━━━━━━━━━
+PERSPECTIVE SHOTS and MAIN SHOT:
+Use ARCHITECTURAL STUDIO RENDER style — NOT hyperrealistic AI render:
+• Render engine feel: V-Ray or Lumion architectural presentation quality
+• Lighting: soft overcast daylight + gentle ambient occlusion shadows
+• Materials: shown clearly but NOT photographic — slightly abstracted textures
+• Sky: plain light grey-white or very pale blue — NO dramatic HDR sky
+• Entourage (people, trees): simple silhouette-style figures and schematic trees
+• No lens flare, no bloom, no cinematic colour grading
+• Overall look: calm, clean, professional studio render — clearly made by a student in an architectural programme, NOT an AI art image
+• Water: calm flat reflection, subtle, not overdramatic
+
+PENCIL SKETCH SECTIONS (CONCEPT DEVELOPMENT and PROCESS):
+These areas must look like genuine hand-drawn pencil on white paper:
+• Medium: HB pencil sketch aesthetic — light grey lines, slight pressure variation
+• Lines: slightly imperfect, not perfectly straight — hand-drawn quality
+• Shading: light hatching for shadow areas, no solid black fills
+• Eraser marks and construction lines faintly visible
+• Do NOT use ink or marker — pencil only for sketch sections
+• Label text in sketch sections: small neat handwriting style
+
+━━━ POSTER GRID — 90×90 cm ━━━━━━━━━━━━━━━━━━━━
+Background: off-white cream #F8F5EE
+Borders: thin 0.5pt warm grey lines between cells
+All orthographic drawings (plans, sections, elevations): pencil sketch on white background
+
+── ROW 1 (top ~20%) ──────────────────────────────
+[Col 1 — 28%] "الاسم | الفكرة | الصور"
+  • Student name large bold top
+  • Project title AR + EN
+  • Concept paragraph 3–4 lines describing ${bd.style}-inspired pavilion bridge in Baghdad garden
+  • THREE small reference photos of ${bd.en} below text (exterior, interior, plan view)
+
+[Col 2 — 38%] "الفكرة وتطوير التصميم | CONCEPT & DESIGN DEVELOPMENT"
+  PENCIL SKETCH STYLE — 4 sketches with hand-drawn arrows between:
+  (1) 6×6 m square footprint sketch over canal cross-section
+  (2) Key ${bd.style} structural element extracted — 3D wireframe pencil sketch
+  (3) Composition diagram — how elements combine (symmetry/grid lines)
+  (4) Final pavilion bridge form — loose 3D pencil sketch
+  Hand-written labels AR + EN below each sketch
+
+[Col 3 — 34%] "لقطات منظورية | PERSPECTIVE SHOTS"
+  TWO architectural studio renders stacked:
+  TOP: Front-left 3/4 view — camera 1.2m above water
+  BOTTOM: Front-right 3/4 view — slightly different angle
+  Both: 10m bridge, 8m canal with soft reflection, Baghdad garden background
+  RENDER STYLE: calm studio render, NOT AI hyperrealistic
+
+── ROW 2 (~22%) ──────────────────────────────────
+[Col 1 — 28%] "المخطط التفصيلي | DETAILED PLAN"
+  PENCIL SKETCH on white — 1:50 scale
+  Bridge 10m × 6m full plan
+  ${bd.style} structural bays in plan
+  Grid lines A–B / 1–2–3, north arrow, scale bar 0–5m
+  Zones: Entry Portal A (1), Walkway (2), Bays (3), Side Niches (4), Exit Portal B (5)
+
+[Col 2 — 38%] "منظور تفجيري | EXPLODED AXONOMETRIC"
+  PENCIL SKETCH — large exploded axonometric
+  Layers separated with dashed pencil leaders:
+  — Stone bridge arch base
+  — Deck floor 6×6m
+  — Main ${bd.style} structural frame
+  — Ceiling/vault/roof system
+  — Parapet/crowning element
+  Labels handwritten AR right, EN left
+
+[Col 3 — 34%] "الواجهات | ELEVATIONS" (2 sub-cells):
+  TOP — "الواجهة الأمامية | FRONT ELEVATION"
+    PENCIL SKETCH — width 10.00m
+    Dimension lines: deck above water 0.80m, total height
+    Human figure 1.70m, waterline as dashed line
+  BOTTOM — "الواجهة الجانبية | SIDE ELEVATION"
+    PENCIL SKETCH — width 6.00m, arch below deck visible
+
+── ROW 3 (~18%) ──────────────────────────────────
+[Col 1 — 28%] "مخطط السقف | ROOF PLAN"
+  PENCIL SKETCH — 10×6m, ${bd.style} roofline from above
+  North arrow + scale bar
+
+[Col 2+3 — 72%] "المقاطع | SECTIONS" (side by side):
+  LEFT — "مقطع طولي | LONGITUDINAL SECTION"
+    PENCIL SKETCH — 10m axis
+    Canal water (light pencil hatching blue-grey) below arch
+    Full span, internal height, portals at each end
+    Dimension lines, human figure
+  RIGHT — "مقطع عرضي | CROSS SECTION"
+    PENCIL SKETCH — 6m width
+    Deck, side structure, parapet, ceiling
+
+── ROW 4 (bottom ~40%) ───────────────────────────
+[Col 1 — 28%] "تحليل المعمارية والإنشائية | ELEMENTS ANALYSIS"
+  Formal table — pencil sketch style drawings in sketch column
+  4 columns: العنصر/ELEMENT | النوع/TYPE | الوظيفة/FUNCTION | رسم/SKETCH
+${bd.elements.map((e,i)=>`  ${i+1}. ${e.na}/${e.n} | ${e.t} | ${e.f} | [pencil sketch of element]`).join("\n")}
+  Numbered circles 1–7, light alternating row shading
+
+[Col 2+3 — 72%] "المنظور الرئيسي | MAIN SHOT"
+  ONE large ARCHITECTURAL STUDIO RENDER filling entire cell
+  Camera: eye-level 3/4 from canal bank, 1.2m above water
+  Canal: 8m wide, calm soft reflection, NOT overdramatic
+  Bridge: 10m span, ${bd.style} frame 100% of length
+  Both open portals visible — one each bank
+  Baghdad garden: palms, cypress, stone paving, grass
+  5 simple silhouette human figures for scale
+  Lighting: soft overcast studio quality — calm NOT dramatic
+  Palette: ${bd.pal}
+  Mood: ${bd.mood}
+  Reference: ${bd.ref}
+  STYLE: clean architectural studio render, NOT AI hyperrealistic image
+
+━━━ REFERENCE BUILDING TEXT (for Col 1, Row 1) ━━━
+${bd.desc}
+Additions: ${bd.adds}
+
+━━━ NEGATIVE PROMPT ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Do NOT: hyperrealistic AI render style, dramatic HDR sky, glowing windows, cinematic colour grading, lens flare, canal narrower than 7m, bare concrete deck, structure only in bridge centre, bridge deck higher than 1.2m above water, empty poster cells, CAD-sterile orthographic drawings, aerial only view`;
+}
+
+document.getElementById("eraRow").addEventListener("click",e=>{
+  const b=e.target.closest(".era-btn"); if(!b)return;
+  curEra=b.dataset.e; buildEras(); buildBuildings(); update();
+});
+document.getElementById("bRow").addEventListener("click",e=>{
+  const b=e.target.closest(".b-btn"); if(!b)return;
+  document.querySelectorAll("#bRow .b-btn").forEach(x=>x.classList.remove("on"));
+  b.classList.add("on"); curB=b.dataset.b; update();
+});
+["sName","pName"].forEach(id=>document.getElementById(id).addEventListener("input",update));
+function update(){ document.getElementById("pbox").textContent=gen(); }
+function doCopy(){
+  navigator.clipboard.writeText(gen()).then(()=>{
+    const c=document.querySelector(".cbtn");
+    c.textContent="تم النسخ ✓"; setTimeout(()=>c.textContent="نسخ البرومت الكامل",2500);
+  });
+}
+buildEras(); buildBuildings(); update();
+</script>
+</body>
+</html>
